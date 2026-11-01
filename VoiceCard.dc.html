@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>VoiceCard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; padding: 14px 16px; border-radius: 18px; display: flex; gap: 12px; align-items: flex-start; font-family: Inter, sans-serif; background: {{bg}}; border: {{border}}">
+  <span aria-hidden="true" style="width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: {{iconBg}}">
+    <sc-if value="{{isVoice}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 7v10M20 10v4"></path></svg></sc-if>
+    <sc-if value="{{isHaptic}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.2" stroke-linecap="round"><rect x="8" y="3" width="8" height="18" rx="2"></rect><path d="M4 8v8M20 8v8"></path></svg></sc-if>
+  </span>
+  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+    <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: {{labelInk}}">{{label}}</span>
+    <span style="font-family: {{quoteFont}}; font-style: {{quoteStyle}}; font-size: {{quoteSize}}; line-height: 1.45; color: {{quoteInk}}">{{quote}}</span>
+  </span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"kind":{"editor":"enum","default":"voice","options":["voice","haptic"]},"label":{"editor":"text","default":"Giọng nói"},"quote":{"editor":"text","default":"“Đi thẳng 20 bước, phía trước có 3 bậc thềm đá.”"},"theme":{"editor":"enum","default":"light","options":["light","dark"]},"size":{"editor":"enum","default":"regular","options":["regular","large"]},"$preview":{"width":361,"height":96}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var dark = (this.props.theme ?? 'light') === 'dark';
+    var haptic = (this.props.kind ?? 'voice') === 'haptic';
+    var large = (this.props.size ?? 'regular') === 'large';
+    return {
+      isVoice: !haptic, isHaptic: haptic,
+      label: this.props.label ?? 'Giọng nói',
+      quote: this.props.quote ?? '“Đi thẳng 20 bước, phía trước có 3 bậc thềm đá.”',
+      bg: dark ? 'rgba(255, 255, 255, 0.07)' : (haptic ? '#FBF3DF' : '#FFFFFF'),
+      border: dark ? '1px solid rgba(255, 255, 255, 0.18)' : (haptic ? '1px solid #E5C77A' : '1px solid rgba(168, 206, 190, 0.55)'),
+      iconBg: dark ? (haptic ? 'rgba(246, 190, 57, 0.18)' : 'rgba(138, 191, 176, 0.18)') : (haptic ? '#FFFFFF' : '#E1EFEA'),
+      iconFg: dark ? (haptic ? '#F6BE39' : '#8ABFB0') : (haptic ? '#7D5100' : '#0E7C5B'),
+      labelInk: dark ? (haptic ? '#F6BE39' : '#8ABFB0') : (haptic ? '#7D5100' : '#0E7C5B'),
+      quoteInk: dark ? '#FFFFFF' : '#0A3026',
+      quoteFont: 'Inter, sans-serif',
+      quoteStyle: 'normal',
+      quoteSize: large ? '18px' : (haptic ? '14px' : '15px')
+    };
+  }
+}
+</script>
+</body>
+</html>

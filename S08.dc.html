@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>S08 Chi tiết phân khu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E7C5B}a:hover{color:#064D38}
+@media (prefers-reduced-motion: no-preference) {
+@keyframes sv-rise { from { opacity: 0; transform: translateY(14px) } }
+@keyframes sv-sheet { from { transform: translateY(100%) } }
+@keyframes sv-popc { from { opacity: 0; transform: translateY(-50%) scale(0.92) } }
+@keyframes sv-pop { from { opacity: 0; transform: scale(0.85) } }
+@keyframes sv-drop { from { opacity: 0; transform: translateY(-18px) } }
+@keyframes sv-fade { from { opacity: 0 } }
+@keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 124, 91, 0.5) } 100% { box-shadow: 0 0 0 18px rgba(14, 124, 91, 0) } }
+@keyframes sv-bobx { 0%, 100% { transform: translate(-50%, 0) } 50% { transform: translate(-50%, -6px) } }
+@keyframes sv-dash { to { stroke-dashoffset: -24 } }
+@keyframes sv-eq { 0%, 100% { transform: scaleY(0.35) } 50% { transform: scaleY(1) } }
+@keyframes sv-shake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-3px) } 40% { transform: translateX(3px) } 60% { transform: translateX(-2px) } 80% { transform: translateX(2px) } }
+@keyframes sv-kb { from { transform: scale(1) } to { transform: scale(1.08) } }
+@keyframes sv-nudge-up { 0%, 100% { transform: translateY(5px) } 50% { transform: translateY(-7px) } }
+@keyframes sv-nudge-left { 0%, 100% { transform: translateX(5px) } 50% { transform: translateX(-7px) } }
+@keyframes sv-nudge-right { 0%, 100% { transform: translateX(-5px) } 50% { transform: translateX(7px) } }
+@keyframes sv-alarm { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 155, 138, 0.65) } 50% { box-shadow: 0 0 0 18px rgba(255, 155, 138, 0) } }
+@keyframes sv-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(184, 242, 217, 0.6) } 50% { box-shadow: 0 0 0 16px rgba(184, 242, 217, 0) } }
+@keyframes sv-scan { from { top: 14% } to { top: 66% } }
+@keyframes sv-fall { 0% { transform: translateY(-30px) rotate(0deg); opacity: 0 } 8% { opacity: 1 } 100% { transform: translateY(560px) rotate(600deg); opacity: 0 } }
+@keyframes sv-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7) } 50% { opacity: 1; transform: scale(1.2) } }
+main > * { animation: sv-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both }
+main > *:nth-child(2) { animation-delay: 0.05s } main > *:nth-child(3) { animation-delay: 0.1s }
+main > *:nth-child(4) { animation-delay: 0.15s } main > *:nth-child(5) { animation-delay: 0.2s }
+main > *:nth-child(6) { animation-delay: 0.25s } main > *:nth-child(7) { animation-delay: 0.3s }
+main > *:nth-child(n+8) { animation-delay: 0.35s }
+[role="dialog"] { animation: sv-sheet 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+[role="alertdialog"] { animation: sv-popc 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.sv-eq > span { transform-origin: bottom; animation: sv-eq 1s ease-in-out infinite }
+.sv-eq > span:nth-child(2n) { animation-duration: 0.8s } .sv-eq > span:nth-child(3n) { animation-delay: 0.25s } .sv-eq > span:nth-child(5n) { animation-duration: 1.3s }
+.sv-shake { animation: sv-shake 0.5s ease-in-out 0.6s 3 }
+.sv-drop { animation: sv-drop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both }
+.sv-scan { animation: sv-scan 2.2s ease-in-out infinite alternate }
+.sv-twinkle { animation: sv-twinkle 1.6s ease-in-out infinite }
+.sv-confetti > span { position: absolute; top: 0; animation: sv-fall 3.4s linear infinite }
+.sv-pop { animation: sv-pop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) 0.3s both }
+}
+a, button { transition: filter 0.15s ease, opacity 0.15s ease }
+a:active, button:active { filter: brightness(0.9) }
+</style>
+</helmet>
+<div style="width: 393px; height: 1640px; box-sizing: border-box; background: #F8FBF9; display: flex; flex-direction: column; font-family: Inter, sans-serif; color: #0D281E; overflow: hidden; position: relative">
+<div style="flex: none; display: grid; height: 50px; position: relative; z-index: 3"><dc-import name="StatusBar" tone="light" hint-size="393px,50px"></dc-import><div style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr))"><a href="S09a.dc.html" tabindex="-1" aria-hidden="true" title="Mô phỏng: Đi ngang vi di sản → S09a" style="display: block; height: 50px"></a><a href="S10a.dc.html" tabindex="-1" aria-hidden="true" title="Mô phỏng: Đến gần hiện vật → S10a" style="display: block; height: 50px"></a></div></div><div style="flex: none; position: relative; margin: 0 12px"><div style="flex: none; display: grid; height: 300px"><dc-import name="HeroCard" subject="Điện Thái Hòa" title="Điện Thái Hòa" eyebrow="Phân khu 2 · xây 1805 · triều Gia Long" sub="Chính điện của Hoàng thành, nơi đặt ngai vàng và cử hành các buổi Đại triều." height="300" chip="" chip-tone="glass" badge="" progress="0" href="" pos="" radius="26" alt="" hint-size="100%,300px"></dc-import></div><div style="position: absolute; top: 10px; left: 10px; right: 10px; display: flex; justify-content: space-between"><a href="S05.dc.html" aria-label="Quay lại bản đồ" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.92); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A3026" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"></path></svg></a><a href="S05b.dc.html" style="display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); font-size: 13px; font-weight: 600; color: #064D38; text-decoration: none"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E7C5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"></path></svg>Chỉ đường · 30 m</a></div></div><main style="flex: 1; min-height: 0; padding: 14px 16px 12px; display: flex; flex-direction: column; gap: 12px; overflow: hidden; ">
+<div style="flex: none; display: grid; height: 56px"><dc-import name="PrimaryButton" label="Nghe thuyết minh · 4:00" href="S12.dc.html" variant="primary" icon="headphones" size="lg" hint-size="100%,56px"></dc-import></div><p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: #456358; text-align: center">Tự phát khi bạn vào phạm vi 15 m của chính điện. Có phụ đề.</p><div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px"><h2 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #0A3026">Thẻ hiện vật · 6</h2><a href="S11.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; color: #0B6B4E; text-decoration: none">Xem tất cả<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0E7C5B" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"></path></svg></a></div><div style="flex: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px"><a href="S10.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none"><div style="width: 100%; height: 100px; border-radius: 12px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Ngai vàng" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="font-size: 11.5px; font-weight: 600; color: #2F5247">Ngai vàng</span></a><a href="S10.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none"><div style="width: 100%; height: 100px; border-radius: 12px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Bửu tán" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="font-size: 11.5px; font-weight: 600; color: #2F5247">Bửu tán</span></a><a href="S10.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none"><div style="width: 100%; height: 100px; border-radius: 12px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Cột gỗ lim" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="font-size: 11.5px; font-weight: 600; color: #2F5247">80 cột gỗ lim</span></a></div><div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px"><h2 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #0A3026">Trải nghiệm đa giác quan</h2></div><div style="flex: none; display: grid; "><dc-import name="SenseOption" sense="audio" eyebrow="Âm thanh 3D" title="Nhã nhạc cung đình" desc="Âm thanh phát từ đúng hướng chính điện, to dần khi bạn bước lại gần." control="link" link-label="Nghe thử Nhã nhạc · 10 giây" href="S08.dc.html" status="Khuyên dùng tai nghe" hint-size="100%,120px"></dc-import></div><div style="flex: none; display: grid; "><dc-import name="SenseOption" sense="haptic" eyebrow="Rung theo nhịp" title="Nhịp trống lễ Đại triều" desc="Cảm nhận nhịp trống lệnh qua rung trên điện thoại hoặc đồng hồ." control="link" link-label="Cường độ" href="S08a.dc.html" status="Đang rung · 80 nhịp/phút" hint-size="100%,120px"></dc-import></div><a href="S16.dc.html" style="flex: none; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #F3F7FB; border: 1.5px solid #9DB8D3; text-decoration: none"><span aria-hidden="true" style="width: 44px; height: 44px; flex: none; border-radius: 14px; background: #E8F0F8; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"></path><path d="M4 7.5 12 12l8-4.5M12 12v9"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700; color: #123F6B">AR phục dựng ở Tử Cấm Thành</span><span style="font-size: 12.5px; color: #2F4A63">Ngay phía sau chính điện · ≈ 180 m</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="m9 5 7 7-7 7"></path></svg></a><div style="flex: none; padding: 16px; border-radius: 20px; background: #FDFBF7; border: 1px solid #E5C77A; box-shadow: 0 2px 8px rgba(10, 48, 38, 0.05); display: flex; flex-direction: column; gap: 10px; "><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #7D5100">Câu chuyện tại đây</span><p style="margin: 0; font-family: 'Playfair Display', serif; font-style: normal; font-size: 16px; line-height: 1.55; color: #0A3026">Mỗi dịp Đại triều, bá quan văn võ xếp hàng trên sân theo phẩm trật, hướng về ngai vàng nơi chính điện.</p><span style="font-size: 12.5px; color: #456358">Trích từ bài thuyết minh Điện Thái Hòa</span></div><div style="flex: none; display: flex; flex-direction: column; gap: 10px; "><div style="flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px"><h2 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #0A3026">Thông tin di tích</h2></div><div style="flex: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px"><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 14px; background: #F3F8F5"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #456358">Khởi dựng</span><span style="font-size: 15px; font-weight: 600; color: #0A3026">1805</span></div><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 14px; background: #F3F8F5"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #456358">Dựng lại</span><span style="font-size: 15px; font-weight: 600; color: #0A3026">1833 · Minh Mạng</span></div><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 14px; background: #F3F8F5"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #456358">Kiến trúc</span><span style="font-size: 15px; font-weight: 600; color: #0A3026">Trùng thiềm điệp ốc</span></div><div style="display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 14px; background: #F3F8F5"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #456358">Kết cấu</span><span style="font-size: 15px; font-weight: 600; color: #0A3026">80 cột gỗ lim</span></div></div></div>
+</main><div style="flex: none; display: grid; height: 82px; position: relative; z-index: 3"><dc-import name="BottomNav" active="map" theme="light" size="regular" hint-size="393px,82px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

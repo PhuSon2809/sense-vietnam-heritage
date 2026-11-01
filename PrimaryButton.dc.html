@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Button</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<a href="{{href}}" style="width: 100%; height: {{height}}; box-sizing: border-box; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px; font-family: Inter, sans-serif; font-size: {{fs}}; font-weight: 600; text-decoration: none; background: {{bg}}; color: {{fg}}; border: {{border}}; box-shadow: {{shadow}}">
+  <sc-if value="{{lead.play}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5-12-7.5Z" fill="{{fg}}"></path></svg></sc-if>
+  <sc-if value="{{lead.headphones}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></sc-if>
+  <sc-if value="{{lead.check}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></sc-if>
+  <sc-if value="{{lead.download}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg></sc-if>
+  <sc-if value="{{lead.camera}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4V8Z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></sc-if>
+  <sc-if value="{{lead.map}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5L9 4Z"></path><path d="M9 4v13.5M15 6.5V20"></path></svg></sc-if>
+  <sc-if value="{{lead.nav}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2-8-8-2Z"></path></svg></sc-if>
+  <sc-if value="{{lead.ar}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"></path><path d="M4 7.5 12 12l8-4.5M12 12v9"></path></svg></sc-if>
+  <sc-if value="{{lead.book}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"></path><path d="M4 19a2 2 0 0 1 2-2h13"></path></svg></sc-if>
+  <sc-if value="{{lead.bookmark}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4V3Z"></path></svg></sc-if>
+  <sc-if value="{{lead.share}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"></path><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"></path></svg></sc-if>
+  <sc-if value="{{lead.refresh}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg></sc-if>
+  <sc-if value="{{lead.phone}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"></path></svg></sc-if>
+  <sc-if value="{{lead.lock}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></sc-if>
+  <sc-if value="{{lead.trash}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg></sc-if>
+  <sc-if value="{{lead.settings}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></sc-if>
+  <span>{{label}}</span>
+  <sc-if value="{{showArrow}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{fg}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></sc-if>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"label":{"editor":"text","default":"Tiếp tục"},"href":{"editor":"text","default":"S05.dc.html"},"variant":{"editor":"enum","default":"primary","options":["primary","secondary","gold","ghost","danger","ondark"]},"icon":{"editor":"enum","default":"arrow","options":["arrow","none","play","headphones","check","download","camera","map","nav","ar","book","bookmark","share","refresh","phone","lock","trash","settings"]},"size":{"editor":"enum","default":"lg","options":["lg","md","xl"]},"$preview":{"width":361,"height":56}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var v = this.props.variant ?? 'primary';
+    var S = {
+      primary: { bg: '#1B4D3E', fg: '#FFFFFF', border: 'none', shadow: '0 8px 20px rgba(6, 40, 30, 0.18)' },
+      secondary: { bg: '#FFFFFF', fg: '#1B4D3E', border: '1.5px solid #A8CEBE', shadow: 'none' },
+      gold: { bg: '#F6BE39', fg: '#06281E', border: 'none', shadow: '0 8px 20px rgba(125, 81, 0, 0.22)' },
+      ghost: { bg: 'transparent', fg: '#0E7C5B', border: 'none', shadow: 'none' },
+      danger: { bg: '#A63A32', fg: '#FFFFFF', border: 'none', shadow: '0 8px 20px rgba(120, 30, 20, 0.2)' },
+      ondark: { bg: 'rgba(255, 255, 255, 0.1)', fg: '#FFFFFF', border: '1.5px solid rgba(255, 255, 255, 0.45)', shadow: 'none' }
+    };
+    var s = S[v] || S.primary;
+    var icon = this.props.icon ?? 'arrow';
+    var names = ['play','headphones','check','download','camera','map','nav','ar','book','bookmark','share','refresh','phone','lock','trash','settings'];
+    var lead = {};
+    names.forEach(function (n) { lead[n] = icon === n; });
+    var size = this.props.size ?? 'lg';
+    return {
+      label: this.props.label ?? 'Tiếp tục',
+      href: this.props.href ?? 'S05.dc.html',
+      bg: s.bg, fg: s.fg, border: s.border, shadow: s.shadow,
+      lead: lead,
+      showArrow: icon === 'arrow',
+      height: size === 'md' ? '48px' : (size === 'xl' ? '68px' : '56px'),
+      fs: size === 'md' ? '15px' : (size === 'xl' ? '18px' : '16px')
+    };
+  }
+}
+</script>
+</body>
+</html>

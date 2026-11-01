@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TimelineItem</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; position: relative; display: flex; gap: 12px; font-family: Inter, sans-serif; color: #0D281E">
+  <span aria-hidden="true" style="position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: #A8CEBE"></span>
+  <span aria-hidden="true" style="position: relative; width: 32px; height: 32px; flex: none; border-radius: 50%; border: 3px solid #F8FBF9; box-sizing: border-box; background: {{dot}}"></span>
+  <a href="{{href}}" style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 1px solid rgba(168, 206, 190, 0.55); text-decoration: none; color: #0D281E">
+    <span style="display: flex; justify-content: space-between; align-items: center"><span style="padding: 3px 8px; border-radius: 5px; background: #FBF3DF; font-size: 11.5px; font-weight: 700; color: #7D5100">{{years}}</span><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #0E7C5B">{{tag}}</span></span>
+    <span style="font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #0A3026">{{king}}</span>
+    <span style="font-size: 13px; line-height: 1.5; color: #456358">{{desc}}</span>
+    <sc-if value="{{hasPhoto}}" hint-placeholder-val="{{ false }}">
+      <span style="height: 120px; border-radius: 14px; overflow: hidden; display: grid">
+        <dc-import name="Photo" subject="{{photo}}" w="100%" h="100%" hint-size="100%,120px"></dc-import>
+      </span>
+    </sc-if>
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"years":{"editor":"text","default":"1802 – 1820"},"tag":{"editor":"text","default":"Lập triều"},"king":{"editor":"text","default":"Gia Long"},"desc":{"editor":"text","default":"Chọn Phú Xuân làm kinh đô, khởi công Kinh thành Huế năm 1805."},"photo":{"editor":"text","default":""},"highlight":{"editor":"boolean","default":true},"href":{"editor":"text","default":"S24.dc.html"},"$preview":{"width":361,"height":160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var photo = this.props.photo ?? '';
+    var hl = this.props.highlight === undefined ? true : (this.props.highlight === true || this.props.highlight === 'true' || this.props.highlight === 'yes');
+    return {
+      years: this.props.years ?? '1802 – 1820',
+      tag: this.props.tag ?? 'Lập triều',
+      king: this.props.king ?? 'Gia Long',
+      desc: this.props.desc ?? 'Chọn Phú Xuân làm kinh đô, khởi công Kinh thành Huế năm 1805.',
+      photo: photo,
+      hasPhoto: photo !== '',
+      dot: hl ? '#D4A017' : '#0A3026',
+      href: this.props.href ?? 'S24.dc.html'
+    };
+  }
+}
+</script>
+</body>
+</html>

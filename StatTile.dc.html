@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>StatTile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; padding: 14px; border-radius: 18px; display: flex; flex-direction: column; gap: 4px; font-family: Inter, sans-serif; background: {{bg}}; border: {{border}}">
+  <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: {{labelInk}}">{{label}}</span>
+  <span style="font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.1; font-weight: 700; color: {{valueInk}}">{{value}}</span>
+  <sc-if value="{{hasUnit}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; color: {{labelInk}}">{{unit}}</span></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"label":{"editor":"text","default":"Quãng đường"},"value":{"editor":"text","default":"2.3 km"},"unit":{"editor":"text","default":""},"tone":{"editor":"enum","default":"light","options":["light","jade","amber","dark"]},"$preview":{"width":172,"height":96}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var T = {
+      light: ['#FFFFFF', '1px solid rgba(168, 206, 190, 0.55)', '#456358', '#0A3026'],
+      jade: ['#E1EFEA', '1px solid #A8CEBE', '#2F5247', '#064D38'],
+      amber: ['#FBF3DF', '1px solid #E5C77A', '#7D5100', '#4F3A12'],
+      dark: ['rgba(255, 255, 255, 0.08)', '1px solid rgba(255, 255, 255, 0.18)', '#BFD9CF', '#F6BE39']
+    };
+    var t = T[this.props.tone ?? 'light'] || T.light;
+    var unit = this.props.unit ?? '';
+    return { label: this.props.label ?? 'Quãng đường', value: this.props.value ?? '2.3 km', unit: unit, hasUnit: unit !== '', bg: t[0], border: t[1], labelInk: t[2], valueInk: t[3] };
+  }
+}
+</script>
+</body>
+</html>

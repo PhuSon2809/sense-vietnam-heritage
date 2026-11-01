@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Toggle</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<button type="button" role="switch" aria-checked="{{checked}}" aria-label="{{label}}" onClick="{{flip}}" style="width: 52px; height: 44px; flex: none; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><span aria-hidden="true" style="width: 48px; height: 28px; padding: 3px; box-sizing: border-box; border-radius: 999px; display: flex; justify-content: {{justify}}; background: {{track}}"><span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(6, 40, 30, 0.3)"></span></span></button>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"on":{"editor":"boolean","default":true},"label":{"editor":"text","default":"Bật / tắt"},"$preview":{"width":52,"height":44}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var on = this.state && this.state.on !== undefined ? this.state.on : (this.props.on === undefined ? true : (this.props.on === true || this.props.on === 'true'));
+    var self = this;
+    return {
+      checked: on ? 'true' : 'false',
+      label: this.props.label ?? 'Bật / tắt',
+      justify: on ? 'flex-end' : 'flex-start',
+      track: on ? '#0E7C5B' : '#B9CCC4',
+      flip: function () { self.setState({ on: !on }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

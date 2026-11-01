@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>S21a Chi tiết mục đã lưu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E7C5B}a:hover{color:#064D38}
+@media (prefers-reduced-motion: no-preference) {
+@keyframes sv-rise { from { opacity: 0; transform: translateY(14px) } }
+@keyframes sv-sheet { from { transform: translateY(100%) } }
+@keyframes sv-popc { from { opacity: 0; transform: translateY(-50%) scale(0.92) } }
+@keyframes sv-pop { from { opacity: 0; transform: scale(0.85) } }
+@keyframes sv-drop { from { opacity: 0; transform: translateY(-18px) } }
+@keyframes sv-fade { from { opacity: 0 } }
+@keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 124, 91, 0.5) } 100% { box-shadow: 0 0 0 18px rgba(14, 124, 91, 0) } }
+@keyframes sv-bobx { 0%, 100% { transform: translate(-50%, 0) } 50% { transform: translate(-50%, -6px) } }
+@keyframes sv-dash { to { stroke-dashoffset: -24 } }
+@keyframes sv-eq { 0%, 100% { transform: scaleY(0.35) } 50% { transform: scaleY(1) } }
+@keyframes sv-shake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-3px) } 40% { transform: translateX(3px) } 60% { transform: translateX(-2px) } 80% { transform: translateX(2px) } }
+@keyframes sv-kb { from { transform: scale(1) } to { transform: scale(1.08) } }
+@keyframes sv-nudge-up { 0%, 100% { transform: translateY(5px) } 50% { transform: translateY(-7px) } }
+@keyframes sv-nudge-left { 0%, 100% { transform: translateX(5px) } 50% { transform: translateX(-7px) } }
+@keyframes sv-nudge-right { 0%, 100% { transform: translateX(-5px) } 50% { transform: translateX(7px) } }
+@keyframes sv-alarm { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 155, 138, 0.65) } 50% { box-shadow: 0 0 0 18px rgba(255, 155, 138, 0) } }
+@keyframes sv-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(184, 242, 217, 0.6) } 50% { box-shadow: 0 0 0 16px rgba(184, 242, 217, 0) } }
+@keyframes sv-scan { from { top: 14% } to { top: 66% } }
+@keyframes sv-fall { 0% { transform: translateY(-30px) rotate(0deg); opacity: 0 } 8% { opacity: 1 } 100% { transform: translateY(560px) rotate(600deg); opacity: 0 } }
+@keyframes sv-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7) } 50% { opacity: 1; transform: scale(1.2) } }
+main > * { animation: sv-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both }
+main > *:nth-child(2) { animation-delay: 0.05s } main > *:nth-child(3) { animation-delay: 0.1s }
+main > *:nth-child(4) { animation-delay: 0.15s } main > *:nth-child(5) { animation-delay: 0.2s }
+main > *:nth-child(6) { animation-delay: 0.25s } main > *:nth-child(7) { animation-delay: 0.3s }
+main > *:nth-child(n+8) { animation-delay: 0.35s }
+[role="dialog"] { animation: sv-sheet 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+[role="alertdialog"] { animation: sv-popc 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.sv-eq > span { transform-origin: bottom; animation: sv-eq 1s ease-in-out infinite }
+.sv-eq > span:nth-child(2n) { animation-duration: 0.8s } .sv-eq > span:nth-child(3n) { animation-delay: 0.25s } .sv-eq > span:nth-child(5n) { animation-duration: 1.3s }
+.sv-shake { animation: sv-shake 0.5s ease-in-out 0.6s 3 }
+.sv-drop { animation: sv-drop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both }
+.sv-scan { animation: sv-scan 2.2s ease-in-out infinite alternate }
+.sv-twinkle { animation: sv-twinkle 1.6s ease-in-out infinite }
+.sv-confetti > span { position: absolute; top: 0; animation: sv-fall 3.4s linear infinite }
+.sv-pop { animation: sv-pop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) 0.3s both }
+}
+a, button { transition: filter 0.15s ease, opacity 0.15s ease }
+a:active, button:active { filter: brightness(0.9) }
+</style>
+</helmet>
+<div style="width: 393px; height: 852px; box-sizing: border-box; background: #F8FBF9; display: flex; flex-direction: column; font-family: Inter, sans-serif; color: #0D281E; overflow: hidden; position: relative">
+<div style="flex: none; display: grid; height: 50px; position: relative; z-index: 3"><dc-import name="StatusBar" tone="light" hint-size="393px,50px"></dc-import></div><div style="flex: none; display: grid; height: 56px; position: relative; z-index: 3"><dc-import name="AppHeader" title="Ngai vàng triều Nguyễn" eyebrow="Sổ tay · hiện vật" back-href="S21.dc.html" back-label="" action="share" theme="light" close-href="S05.dc.html" size="regular" hint-size="393px,56px"></dc-import></div><main style="flex: 1; min-height: 0; padding: 4px 16px 14px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; ">
+<div style="width: 100%; height: 220px; border-radius: 22px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Ngai vàng" w="100%" h="100%" tone="light" hint-size="100%,100%"></dc-import></div><div style="flex: none; display: flex; gap: 6px; flex-wrap: wrap"><span class="" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #E1EFEA; font-size: 11.5px; font-weight: 700; color: #064D38; white-space: nowrap; "><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#064D38" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Lưu lúc 09:42</span><span class="" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #E1EFEA; font-size: 11.5px; font-weight: 700; color: #064D38; white-space: nowrap; "><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#064D38" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Điện Thái Hòa</span><span class="" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #F1F4F2; font-size: 11.5px; font-weight: 700; color: #456358; white-space: nowrap; ">16.4698, 107.5776</span></div><div style="flex: none; padding: 12px 14px; border-radius: 20px; background: #FFFFFF; border: 1px solid rgba(168, 206, 190, 0.55); box-shadow: 0 2px 8px rgba(10, 48, 38, 0.05); display: flex; flex-direction: column; gap: 12px; "><div style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: #1B4D3E; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z" fill="#FFFFFF"></path></svg></span><div style="flex: 1; display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between"><span style="font-size: 14px; font-weight: 700; color: #0A3026">Trích đoạn thuyết minh</span><span style="font-size: 12px; font-weight: 600; color: #456358">0:30</span></div><span role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="display: block; height: 6px; border-radius: 999px; background: #E1EFEA; overflow: hidden"><span style="display: block; width: 0%; height: 100%; border-radius: 999px; background: #0E7C5B"></span></span></div></div></div><div style="flex: none; display: flex; flex-direction: column; gap: 6px"><label for="s21a-note" style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #7D5100">Ghi chú của bạn</label><textarea id="s21a-note" rows="4" style="box-sizing: border-box; width: 100%; padding: 12px 14px; border-radius: 16px; border: 1.5px solid #A8CEBE; background: #FFFFFF; font-family: Inter, sans-serif; font-size: 15px; line-height: 1.5; color: #0D281E; resize: none">So sánh hoa văn rồng trên ngai với ngai thời Lê – rồng 5 móng, mây cuốn quanh tựa.</textarea></div><div style="flex: 1; min-height: 0"></div><div style="flex: none; display: grid; height: 56px"><dc-import name="PrimaryButton" label="Lưu ghi chú" href="S21.dc.html" variant="primary" icon="check" size="lg" hint-size="100%,56px"></dc-import></div>
+</main><div style="flex: none; display: grid; height: 82px; position: relative; z-index: 3"><dc-import name="BottomNav" active="profile" theme="light" size="regular" hint-size="393px,82px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

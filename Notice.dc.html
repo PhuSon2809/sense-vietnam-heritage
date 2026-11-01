@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Notice</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div role="status" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 16px; display: flex; gap: 12px; align-items: flex-start; font-family: Inter, sans-serif; background: {{bg}}; border: {{border}}; box-shadow: {{shadow}}">
+  <span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: {{iconBg}}">
+    <sc-if value="{{t.info}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg></sc-if>
+    <sc-if value="{{t.success}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></sc-if>
+    <sc-if value="{{t.warn}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"></path><path d="M12 10v4M12 17v.5"></path></svg></sc-if>
+    <sc-if value="{{t.offline}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.4" stroke-linecap="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M3 3l18 18"></path></svg></sc-if>
+    <sc-if value="{{t.haptic}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.4" stroke-linecap="round"><rect x="8" y="3" width="8" height="18" rx="2"></rect><path d="M4 8v8M20 8v8"></path></svg></sc-if>
+    <sc-if value="{{t.ar}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{iconFg}}" stroke-width="2.4" stroke-linejoin="round"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"></path><path d="M4 7.5 12 12l8-4.5M12 12v9"></path></svg></sc-if>
+  </span>
+  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+    <span style="font-size: 14px; font-weight: 700; color: {{titleInk}}">{{title}}</span>
+    <sc-if value="{{hasText}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12.5px; line-height: 1.45; color: {{textInk}}">{{text}}</span></sc-if>
+  </span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tone":{"editor":"enum","default":"info","options":["info","success","warn","offline","haptic","ar"]},"title":{"editor":"text","default":"Tín hiệu GPS yếu"},"text":{"editor":"text","default":"Đang thử định vị lại bằng Bluetooth trong khu di tích…"},"elevated":{"editor":"boolean","default":false},"$preview":{"width":361,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var tone = this.props.tone ?? 'info';
+    var T = {
+      info: ['#F3F7FB', '1px solid #9DB8D3', '#E8F0F8', '#185FA5', '#0A3026', '#2F4A63'],
+      success: ['#EEF7F2', '1px solid #8ABFB0', '#0E7C5B', '#FFFFFF', '#064D38', '#2F5247'],
+      warn: ['#FDF6E7', '1px solid #E5C77A', '#F6BE39', '#3E2C00', '#4F3A12', '#5C430F'],
+      offline: ['#0A3026', '1px solid #0A3026', 'rgba(246, 190, 57, 0.2)', '#F6BE39', '#FFFFFF', '#CFE3DA'],
+      haptic: ['#FBF3DF', '1px solid #E5C77A', '#FFFFFF', '#7D5100', '#4F3A12', '#5C430F'],
+      ar: ['#E8F0F8', '1px solid #9DB8D3', '#185FA5', '#FFFFFF', '#123F6B', '#2F4A63']
+    };
+    var c = T[tone] || T.info;
+    var t = {};
+    ['info','success','warn','offline','haptic','ar'].forEach(function (n) { t[n] = n === tone; });
+    var text = this.props.text ?? 'Đang thử định vị lại bằng Bluetooth trong khu di tích…';
+    var el = this.props.elevated === true || this.props.elevated === 'true' || this.props.elevated === 'yes';
+    return {
+      t: t, title: this.props.title ?? 'Tín hiệu GPS yếu', text: text, hasText: text !== '',
+      bg: c[0], border: c[1], iconBg: c[2], iconFg: c[3], titleInk: c[4], textInk: c[5],
+      shadow: el ? '0 10px 28px rgba(6, 40, 30, 0.18)' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AudioPlayer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; padding: 16px; border-radius: 22px; background: {{bg}}; border: {{border}}; display: flex; flex-direction: column; gap: 14px; font-family: Inter, sans-serif; color: {{ink}}">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <div role="slider" aria-label="Vị trí phát" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{progressNum}}" style="position: relative; height: 44px; margin: -14px 0; display: flex; align-items: center; cursor: pointer">
+      <span style="position: absolute; left: 0; right: 0; height: 5px; border-radius: 999px; background: {{track}}"></span>
+      <span style="position: absolute; left: 0; width: {{progress}}; height: 5px; border-radius: 999px; background: {{fill}}"></span>
+      <span style="position: absolute; left: {{knob}}; width: 16px; height: 16px; border-radius: 50%; background: {{fill}}; border: 3px solid {{knobRing}}; box-sizing: border-box; box-shadow: 0 1px 4px rgba(6, 40, 30, 0.3)"></span>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: {{muted}}"><span>{{elapsed}}</span><span>{{total}}</span></div>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 22px">
+    <button type="button" aria-label="Tua lại 15 giây" style="width: 48px; height: 48px; border-radius: 50%; border: {{btnBorder}}; background: transparent; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0; color: {{ink}}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.3-5.7"></path><path d="M4 4v5h5"></path></svg><span style="font-size: 11.5px; font-weight: 700; margin-top: -2px">15</span></button>
+    <button type="button" aria-label="{{playLabel}}" onClick="{{toggle}}" style="width: 64px; height: 64px; border-radius: 50%; border: none; background: {{playBg}}; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(6, 40, 30, 0.22); cursor: pointer">
+      <sc-if value="{{playing}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1" fill="{{playFg}}"></rect><rect x="14" y="5" width="4" height="14" rx="1" fill="{{playFg}}"></rect></svg></sc-if>
+      <sc-if value="{{paused}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z" fill="{{playFg}}"></path></svg></sc-if>
+    </button>
+    <button type="button" aria-label="Tua tới 15 giây" style="width: 48px; height: 48px; border-radius: 50%; border: {{btnBorder}}; background: transparent; display: flex; align-items: center; justify-content: center; flex-direction: column; color: {{ink}}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v5h-5"></path></svg><span style="font-size: 11.5px; font-weight: 700; margin-top: -2px">15</span></button>
+  </div>
+  <sc-if value="{{showSpeed}}" hint-placeholder-val="{{ true }}">
+    <div role="radiogroup" aria-label="Tốc độ đọc" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 14px; background: {{segBg}}">
+      <sc-for list="{{speeds}}" as="s" hint-placeholder-count="3">
+        <button type="button" role="radio" aria-checked="{{s.checked}}" onClick="{{s.pick}}" style="height: 44px; border-radius: 10px; border: none; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; background: {{s.bg}}; color: {{s.fg}}; box-shadow: {{s.shadow}}">{{s.label}}</button>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"elapsed":{"editor":"text","default":"1:12"},"total":{"editor":"text","default":"4:00"},"progress":{"editor":"range","default":30,"min":0,"max":100,"unit":"%"},"speed":{"editor":"enum","default":"1.0x","options":["0.8x","1.0x","1.2x"]},"theme":{"editor":"enum","default":"light","options":["light","dark"]},"showSpeed":{"editor":"boolean","default":true},"$preview":{"width":361,"height":228}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var dark = (this.props.theme ?? 'light') === 'dark';
+    var playing = this.state && this.state.playing !== undefined ? this.state.playing : true;
+    var speed = (this.state && this.state.speed) || (this.props.speed ?? '1.0x');
+    var p = Number(this.props.progress ?? 30);
+    var ss = this.props.showSpeed;
+    return {
+      bg: dark ? 'rgba(255, 255, 255, 0.06)' : '#FFFFFF',
+      border: dark ? '1px solid rgba(255, 255, 255, 0.16)' : '1px solid rgba(168, 206, 190, 0.55)',
+      ink: dark ? '#FFFFFF' : '#0A3026',
+      muted: dark ? '#BFD9CF' : '#456358',
+      track: dark ? 'rgba(255, 255, 255, 0.18)' : '#E1EFEA',
+      fill: dark ? '#F6BE39' : '#0E7C5B',
+      knobRing: dark ? '#06281E' : '#FFFFFF',
+      btnBorder: dark ? '1px solid rgba(255, 255, 255, 0.3)' : '1px solid #A8CEBE',
+      playBg: dark ? '#F6BE39' : '#1B4D3E',
+      playFg: dark ? '#06281E' : '#FFFFFF',
+      segBg: dark ? 'rgba(255, 255, 255, 0.08)' : '#EEF5F1',
+      progress: p + '%',
+      progressNum: p,
+      knob: 'calc(' + p + '% - 8px)',
+      elapsed: this.props.elapsed ?? '1:12',
+      total: this.props.total ?? '4:00',
+      playing: playing,
+      paused: !playing,
+      playLabel: playing ? 'Tạm dừng' : 'Phát',
+      toggle: function () { self.setState({ playing: !playing }); },
+      showSpeed: ss === undefined ? true : (ss === true || ss === 'true' || ss === 'yes'),
+      speeds: ['0.8x', '1.0x', '1.2x'].map(function (s) {
+        var on = s === speed;
+        return {
+          label: s,
+          checked: on ? 'true' : 'false',
+          bg: on ? (dark ? '#F6BE39' : '#FFFFFF') : 'transparent',
+          fg: on ? (dark ? '#06281E' : '#0A3026') : (dark ? '#BFD9CF' : '#456358'),
+          shadow: on && !dark ? '0 1px 4px rgba(6, 40, 30, 0.12)' : 'none',
+          pick: function () { self.setState({ speed: s }); }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

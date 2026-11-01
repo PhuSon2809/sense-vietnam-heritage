@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>S13d Chọn điểm đến Trợ năng</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E7C5B}a:hover{color:#064D38}
+@media (prefers-reduced-motion: no-preference) {
+@keyframes sv-rise { from { opacity: 0; transform: translateY(14px) } }
+@keyframes sv-sheet { from { transform: translateY(100%) } }
+@keyframes sv-popc { from { opacity: 0; transform: translateY(-50%) scale(0.92) } }
+@keyframes sv-pop { from { opacity: 0; transform: scale(0.85) } }
+@keyframes sv-drop { from { opacity: 0; transform: translateY(-18px) } }
+@keyframes sv-fade { from { opacity: 0 } }
+@keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 124, 91, 0.5) } 100% { box-shadow: 0 0 0 18px rgba(14, 124, 91, 0) } }
+@keyframes sv-bobx { 0%, 100% { transform: translate(-50%, 0) } 50% { transform: translate(-50%, -6px) } }
+@keyframes sv-dash { to { stroke-dashoffset: -24 } }
+@keyframes sv-eq { 0%, 100% { transform: scaleY(0.35) } 50% { transform: scaleY(1) } }
+@keyframes sv-shake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-3px) } 40% { transform: translateX(3px) } 60% { transform: translateX(-2px) } 80% { transform: translateX(2px) } }
+@keyframes sv-kb { from { transform: scale(1) } to { transform: scale(1.08) } }
+@keyframes sv-nudge-up { 0%, 100% { transform: translateY(5px) } 50% { transform: translateY(-7px) } }
+@keyframes sv-nudge-left { 0%, 100% { transform: translateX(5px) } 50% { transform: translateX(-7px) } }
+@keyframes sv-nudge-right { 0%, 100% { transform: translateX(-5px) } 50% { transform: translateX(7px) } }
+@keyframes sv-alarm { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 155, 138, 0.65) } 50% { box-shadow: 0 0 0 18px rgba(255, 155, 138, 0) } }
+@keyframes sv-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(184, 242, 217, 0.6) } 50% { box-shadow: 0 0 0 16px rgba(184, 242, 217, 0) } }
+@keyframes sv-scan { from { top: 14% } to { top: 66% } }
+@keyframes sv-fall { 0% { transform: translateY(-30px) rotate(0deg); opacity: 0 } 8% { opacity: 1 } 100% { transform: translateY(560px) rotate(600deg); opacity: 0 } }
+@keyframes sv-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7) } 50% { opacity: 1; transform: scale(1.2) } }
+main > * { animation: sv-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both }
+main > *:nth-child(2) { animation-delay: 0.05s } main > *:nth-child(3) { animation-delay: 0.1s }
+main > *:nth-child(4) { animation-delay: 0.15s } main > *:nth-child(5) { animation-delay: 0.2s }
+main > *:nth-child(6) { animation-delay: 0.25s } main > *:nth-child(7) { animation-delay: 0.3s }
+main > *:nth-child(n+8) { animation-delay: 0.35s }
+[role="dialog"] { animation: sv-sheet 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+[role="alertdialog"] { animation: sv-popc 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.sv-eq > span { transform-origin: bottom; animation: sv-eq 1s ease-in-out infinite }
+.sv-eq > span:nth-child(2n) { animation-duration: 0.8s } .sv-eq > span:nth-child(3n) { animation-delay: 0.25s } .sv-eq > span:nth-child(5n) { animation-duration: 1.3s }
+.sv-shake { animation: sv-shake 0.5s ease-in-out 0.6s 3 }
+.sv-drop { animation: sv-drop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both }
+.sv-scan { animation: sv-scan 2.2s ease-in-out infinite alternate }
+.sv-twinkle { animation: sv-twinkle 1.6s ease-in-out infinite }
+.sv-confetti > span { position: absolute; top: 0; animation: sv-fall 3.4s linear infinite }
+.sv-pop { animation: sv-pop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) 0.3s both }
+}
+a, button { transition: filter 0.15s ease, opacity 0.15s ease }
+a:active, button:active { filter: brightness(0.9) }
+</style>
+</helmet>
+<div style="width: 393px; height: 940px; box-sizing: border-box; background: #06281E; display: flex; flex-direction: column; font-family: Inter, sans-serif; color: #FFFFFF; overflow: hidden; position: relative">
+<div style="flex: none; display: grid; height: 50px; position: relative; z-index: 3"><dc-import name="StatusBar" tone="transparent-dark" hint-size="393px,50px"></dc-import></div><div style="flex: none; display: grid; height: 56px; position: relative; z-index: 3"><dc-import name="AppHeader" title="Chọn điểm đến" eyebrow="Trợ năng" back-href="S13c.dc.html" back-label="" action="none" theme="dark" close-href="S05.dc.html" size="large" hint-size="393px,56px"></dc-import></div><main style="flex: 1; min-height: 0; padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; ">
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #BFD9CF; ">Chạm vào phân khu để chọn. Khi bật TalkBack: vuốt để nghe, chạm hai lần để chọn. Sắp xếp theo khoảng cách.</p><div style="flex: none; display: flex; flex-direction: column; gap: 10px; "><a href="S13c.dc.html" aria-current="false" style="display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 22px; text-decoration: none; background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.18)"><div style="width: 64px; height: 64px; border-radius: 16px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Ngọ Môn" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 19px; font-weight: 700; color: #FFFFFF">Ngọ Môn</span><span style="font-size: 14px; color: #BFD9CF">60 m · lối đi bằng phẳng</span><span style="align-self: flex-start; margin-top: 2px; padding: 2px 9px; border-radius: 999px; background: rgba(138, 224, 190, 0.2); font-size: 12px; font-weight: 700; color: #B8F2D9">Gần nhất</span></span></a><a href="S13c.dc.html" aria-current="true" style="display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 22px; text-decoration: none; background: rgba(246, 190, 57, 0.12); border: 2px solid #F6BE39"><div style="width: 64px; height: 64px; border-radius: 16px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Điện Thái Hòa" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 19px; font-weight: 700; color: #FFFFFF">Điện Thái Hòa</span><span style="font-size: 14px; color: #BFD9CF">120 m · có 3 bậc thềm đá</span><span style="align-self: flex-start; margin-top: 2px; padding: 2px 9px; border-radius: 999px; background: #F6BE39; font-size: 12px; font-weight: 700; color: #06281E">Đang chọn</span></span></a><a href="S13c.dc.html" aria-current="false" style="display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 22px; text-decoration: none; background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.18)"><div style="width: 64px; height: 64px; border-radius: 16px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Tử Cấm Thành" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 19px; font-weight: 700; color: #FFFFFF">Tử Cấm Thành</span><span style="font-size: 14px; color: #BFD9CF">300 m · nền phế tích, đi chậm</span></span></a><a href="S13c.dc.html" aria-current="false" style="display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 22px; text-decoration: none; background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.18)"><div style="width: 64px; height: 64px; border-radius: 16px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Thế Tổ Miếu" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 19px; font-weight: 700; color: #FFFFFF">Thế Tổ Miếu</span><span style="font-size: 14px; color: #BFD9CF">350 m · sân lát gạch</span></span></a><a href="S13c.dc.html" aria-current="false" style="display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 22px; text-decoration: none; background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.18)"><div style="width: 64px; height: 64px; border-radius: 16px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Cung Diên Thọ" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 19px; font-weight: 700; color: #FFFFFF">Cung Diên Thọ</span><span style="font-size: 14px; color: #BFD9CF">420 m · có bậc cửa cao</span></span></a><a href="S13c.dc.html" aria-current="false" style="display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; border-radius: 22px; text-decoration: none; background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.18)"><div style="width: 64px; height: 64px; border-radius: 16px; overflow: hidden; display: grid; flex: none; "><dc-import name="Photo" subject="Cung Trường Sanh" w="100%" h="100%" tone="light" hide-label="yes" hint-size="100%,100%"></dc-import></div><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 19px; font-weight: 700; color: #FFFFFF">Cung Trường Sanh</span><span style="font-size: 14px; color: #BFD9CF">450 m · lối đi quanh hồ</span></span></a></div>
+</main><div style="flex: none; display: grid; height: 96px; position: relative; z-index: 3"><dc-import name="BottomNav" active="map" theme="dark" size="large" hint-size="393px,96px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":940}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

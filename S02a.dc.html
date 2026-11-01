@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>S02a Chọn trải nghiệm giác quan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E7C5B}a:hover{color:#064D38}
+@media (prefers-reduced-motion: no-preference) {
+@keyframes sv-rise { from { opacity: 0; transform: translateY(14px) } }
+@keyframes sv-sheet { from { transform: translateY(100%) } }
+@keyframes sv-popc { from { opacity: 0; transform: translateY(-50%) scale(0.92) } }
+@keyframes sv-pop { from { opacity: 0; transform: scale(0.85) } }
+@keyframes sv-drop { from { opacity: 0; transform: translateY(-18px) } }
+@keyframes sv-fade { from { opacity: 0 } }
+@keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 124, 91, 0.5) } 100% { box-shadow: 0 0 0 18px rgba(14, 124, 91, 0) } }
+@keyframes sv-bobx { 0%, 100% { transform: translate(-50%, 0) } 50% { transform: translate(-50%, -6px) } }
+@keyframes sv-dash { to { stroke-dashoffset: -24 } }
+@keyframes sv-eq { 0%, 100% { transform: scaleY(0.35) } 50% { transform: scaleY(1) } }
+@keyframes sv-shake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-3px) } 40% { transform: translateX(3px) } 60% { transform: translateX(-2px) } 80% { transform: translateX(2px) } }
+@keyframes sv-kb { from { transform: scale(1) } to { transform: scale(1.08) } }
+@keyframes sv-nudge-up { 0%, 100% { transform: translateY(5px) } 50% { transform: translateY(-7px) } }
+@keyframes sv-nudge-left { 0%, 100% { transform: translateX(5px) } 50% { transform: translateX(-7px) } }
+@keyframes sv-nudge-right { 0%, 100% { transform: translateX(-5px) } 50% { transform: translateX(7px) } }
+@keyframes sv-alarm { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 155, 138, 0.65) } 50% { box-shadow: 0 0 0 18px rgba(255, 155, 138, 0) } }
+@keyframes sv-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(184, 242, 217, 0.6) } 50% { box-shadow: 0 0 0 16px rgba(184, 242, 217, 0) } }
+@keyframes sv-scan { from { top: 14% } to { top: 66% } }
+@keyframes sv-fall { 0% { transform: translateY(-30px) rotate(0deg); opacity: 0 } 8% { opacity: 1 } 100% { transform: translateY(560px) rotate(600deg); opacity: 0 } }
+@keyframes sv-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7) } 50% { opacity: 1; transform: scale(1.2) } }
+main > * { animation: sv-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both }
+main > *:nth-child(2) { animation-delay: 0.05s } main > *:nth-child(3) { animation-delay: 0.1s }
+main > *:nth-child(4) { animation-delay: 0.15s } main > *:nth-child(5) { animation-delay: 0.2s }
+main > *:nth-child(6) { animation-delay: 0.25s } main > *:nth-child(7) { animation-delay: 0.3s }
+main > *:nth-child(n+8) { animation-delay: 0.35s }
+[role="dialog"] { animation: sv-sheet 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+[role="alertdialog"] { animation: sv-popc 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.sv-eq > span { transform-origin: bottom; animation: sv-eq 1s ease-in-out infinite }
+.sv-eq > span:nth-child(2n) { animation-duration: 0.8s } .sv-eq > span:nth-child(3n) { animation-delay: 0.25s } .sv-eq > span:nth-child(5n) { animation-duration: 1.3s }
+.sv-shake { animation: sv-shake 0.5s ease-in-out 0.6s 3 }
+.sv-drop { animation: sv-drop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both }
+.sv-scan { animation: sv-scan 2.2s ease-in-out infinite alternate }
+.sv-twinkle { animation: sv-twinkle 1.6s ease-in-out infinite }
+.sv-confetti > span { position: absolute; top: 0; animation: sv-fall 3.4s linear infinite }
+.sv-pop { animation: sv-pop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) 0.3s both }
+}
+a, button { transition: filter 0.15s ease, opacity 0.15s ease }
+a:active, button:active { filter: brightness(0.9) }
+</style>
+</helmet>
+<div style="width: 393px; height: 852px; box-sizing: border-box; background: #F8FBF9; display: flex; flex-direction: column; font-family: Inter, sans-serif; color: #0D281E; overflow: hidden; position: relative">
+<div style="flex: none; display: grid; height: 50px; position: relative; z-index: 3"><dc-import name="StatusBar" tone="light" hint-size="393px,50px"></dc-import></div><div style="flex: none; display: grid; height: 56px; position: relative; z-index: 3"><dc-import name="AppHeader" title="Trải nghiệm giác quan" eyebrow="Bước 2 / 4" back-href="S02.dc.html" back-label="" action="a11y" a11y-href="S03.dc.html" theme="light" close-href="S05.dc.html" size="regular" hint-size="393px,56px"></dc-import></div><main style="flex: 1; min-height: 0; padding: 4px 20px 16px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; ">
+<div style="flex: none; display: flex; flex-direction: column; gap: 6px; "><h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2; font-weight: 700; color: #0A3026; ">Bạn muốn cảm nhận Cố đô thế nào?</h1><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #456358; ">Bật những giác quan bạn muốn dùng. Có thể đổi lại bất cứ lúc nào trong Cá nhân.</p></div><div style="flex: none; display: grid; "><dc-import name="SenseOption" sense="audio" eyebrow="Khuyên dùng tai nghe" title="Thính giác · Âm thanh 3D" desc="Nhã nhạc và thuyết minh vang lên đúng hướng công trình, theo từng bước chân." control="toggle" on="yes" hint-size="100%,120px"></dc-import></div><div style="flex: none; display: grid; "><dc-import name="SenseOption" sense="haptic" eyebrow="Điện thoại hoặc đồng hồ" title="Xúc giác · Rung theo nhịp" desc="Cảm nhận nhịp trống lễ, cảnh báo và chỉ đường qua rung." control="toggle" on="yes" hint-size="100%,120px"></dc-import></div><div style="flex: none; display: grid; "><dc-import name="SenseOption" sense="ar" eyebrow="Tại Tử Cấm Thành" badge="Premium" title="Thị giác · AR phục dựng" desc="Gợi ý khi bạn đến Tử Cấm Thành." control="toggle" on="no" hint-size="100%,120px"></dc-import></div><div style="flex: 1; min-height: 0"></div><div aria-hidden="true" style="flex: none; display: flex; justify-content: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #A8CEBE"></span><span style="width: 26px; height: 8px; border-radius: 999px; background: #1B4D3E"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #A8CEBE"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #A8CEBE"></span></div><div style="flex: none; display: grid; height: 56px"><dc-import name="PrimaryButton" label="Tiếp tục" href="S03.dc.html" variant="primary" icon="arrow" size="lg" hint-size="100%,56px"></dc-import></div><div style="flex: none; display: grid; height: 48px"><dc-import name="PrimaryButton" label="Bỏ qua" href="S03.dc.html" variant="ghost" icon="none" size="md" hint-size="100%,48px"></dc-import></div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

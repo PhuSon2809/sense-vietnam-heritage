@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kiểm thử Sense Vietnam's Heritage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<style>
+/* Layout: one column of steps; during a task, brief panel beside a phone frame (stacks on phones). Palette from the app: ngói thanh lưu ly + hoàng lưu ly. */
+:root{
+  --bg:#F4F7F5; --surface:#FFFFFF; --ink:#0D281E; --muted:#4A6359; --line:#D3E0D9;
+  --brand:#1B4D3E; --brand-ink:#FFFFFF; --soft:#E3EFE9; --gold:#8A5A00; --gold-soft:#FBF1DA;
+  --ok:#1E7A4F; --ok-soft:#E1F2E8; --bad:#A63A32; --bad-soft:#F8E5E3; --warn:#8A5A00;
+  --display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --body:"Be Vietnam Pro", "Segoe UI", Roboto, system-ui, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1613; --surface:#14211C; --ink:#E4EEE9; --muted:#9CB3A9; --line:#2A3C35;
+  --brand:#6CC7A0; --brand-ink:#062419; --soft:#1C3029; --gold:#F0C25A; --gold-soft:#2E2614;
+  --ok:#6CC79A; --ok-soft:#173326; --bad:#F09A90; --bad-soft:#3A1E1B; --warn:#F0C25A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1613; --surface:#14211C; --ink:#E4EEE9; --muted:#9CB3A9; --line:#2A3C35;
+  --brand:#6CC7A0; --brand-ink:#062419; --soft:#1C3029; --gold:#F0C25A; --gold-soft:#2E2614;
+  --ok:#6CC79A; --ok-soft:#173326; --bad:#F09A90; --bad-soft:#3A1E1B; --warn:#F0C25A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--brand)}
+.brand svg{flex:none}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.steps span{font-size:12.5px;padding:3px 10px;border-radius:99px;background:var(--soft);color:var(--muted)}
+.steps span.on{background:var(--brand);color:var(--brand-ink)}
+.steps span.done{color:var(--ok)}
+h1,h2{font-family:var(--display);font-weight:700;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4.4vw,40px)} h2{font-size:24px}
+h3{font-size:16px;margin:0;font-weight:600}
+p{margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.narrow{max-width:720px}
+.muted{color:var(--muted)}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--gold)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:inherit;font-weight:600;border-radius:12px;padding:12px 18px;min-height:46px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.opt:focus-within{outline:3px solid var(--gold);outline-offset:2px}
+.link{background:none;border:0;padding:0;font:inherit;color:var(--brand);text-decoration:underline;cursor:pointer}
+label.f{display:flex;flex-direction:column;gap:6px;font-weight:500}
+input[type=text],select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%}
+textarea{min-height:84px;resize:vertical}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--brand)}
+ul.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.scale{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:6px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0}
+.opt span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid var(--line);border-radius:10px;font-weight:600;background:var(--bg);cursor:pointer;font-variant-numeric:tabular-nums}
+.opt input:checked+span{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.ends{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+.sus{display:flex;flex-direction:column;gap:18px}
+.sus .q{display:flex;flex-direction:column;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sus .q:last-child{border-bottom:0}
+/* task run */
+.run{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start}
+.brief{position:sticky;top:max(12px,env(safe-area-inset-top,0px))}
+.tasktext{font-size:17px;line-height:1.55;padding:14px 16px;border-radius:12px;background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
+.sim{border:1px dashed var(--brand);background:var(--soft);color:var(--ink);text-align:left}
+.sim small{display:block;font-weight:400;color:var(--muted)}
+.phone{position:relative;border-radius:34px;border:8px solid #10201A;background:#10201A;overflow:hidden;box-shadow:0 18px 40px -18px rgba(6,40,30,.45)}
+.phone iframe{display:block;border:0;width:393px;height:852px;transform-origin:0 0;background:#fff}
+.phonesim{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:4;width:max-content;max-width:90%;white-space:nowrap;font-size:14px;padding:10px 16px;min-height:44px;background:#F6BE39;color:#1a1200;border:0;box-shadow:0 10px 24px rgba(0,0,0,.35);font-weight:700}
+@media (prefers-reduced-motion:no-preference){.phonesim{animation:simpulse 1.6s ease-in-out infinite}@keyframes simpulse{50%{box-shadow:0 0 0 10px rgba(240,194,90,.25),0 10px 24px rgba(0,0,0,.35)}}}
+.phone .veil{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(6,40,30,.72);color:#fff;text-align:center;padding:24px;font-weight:600}
+.timer{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.done-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:99px;background:var(--ok-soft);color:var(--ok);font-weight:600}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;word-break:break-all;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;max-height:140px;overflow:auto}
+/* results */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.stat b{display:block;font-family:var(--display);font-size:32px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;letter-spacing:.02em}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12.5px;font-weight:600}
+.pill.success{background:var(--ok-soft);color:var(--ok)}
+.pill.wrong{background:var(--gold-soft);color:var(--warn)}
+.pill.skip{background:var(--bad-soft);color:var(--bad)}
+.bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;min-width:80px}
+.bar i{display:block;height:100%;background:var(--brand)}
+details.p{border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+details.p>summary{cursor:pointer;padding:14px 18px;font-weight:600;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+details.p>div{padding:0 18px 18px;display:flex;flex-direction:column;gap:14px}
+.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--muted);word-break:break-word}
+.note{font-size:13px;color:var(--muted)}
+@media (max-width:820px){
+  .run{grid-template-columns:minmax(0,1fr)}
+  .brief{position:static}
+  .phone{border-width:6px;border-radius:26px;justify-self:center}
+}
+@media (prefers-reduced-motion:no-preference){.card{animation:rise .25s ease both}@keyframes rise{from{transform:translateY(6px)}}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5M5 10v9h14v-9M9 19v-5h6v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Sense Vietnam's Heritage · Kiểm thử khả dụng</div>
+    <nav class="steps" id="steps" aria-label="Tiến trình"></nav>
+  </header>
+  <main id="app" aria-live="polite"></main>
+</div>
+
+<script>
+/* ---------- test content ---------- */
+const TASKS = [
+  { id:'T1', title:'Thiết lập lần đầu', persona:'Minh Châu', start:'Main', goal:['S05'], optimal:5,
+    text:'Bạn vừa đến cổng Ngọ Môn và mở ứng dụng lần đầu. Hãy thiết lập ứng dụng để tham quan tại chỗ bằng tiếng Việt, rồi vào bản đồ Đại Nội.' },
+  { id:'T2', title:'Lộ trình 3 giờ', persona:'Minh Châu', start:'S05', goal:['S07a'], optimal:3,
+    text:'Bạn chỉ có khoảng 3 giờ để tham quan. Hãy nhờ ứng dụng gợi ý một lộ trình phù hợp và bắt đầu đi theo lộ trình đó.' },
+  { id:'T3', title:'Lưu hiện vật vào Sổ tay', persona:'Minh Châu', start:'S05', goal:['S21'], needAny:['S10','S11'], optimal:4,
+    text:'Bạn muốn tìm hiểu ngai vàng triều Nguyễn đặt trong Điện Thái Hòa và lưu thông tin về hiện vật này vào Sổ tay để làm bài sau.' },
+  { id:'T4', title:'AR phục dựng', persona:'David Chen', start:'S22', goal:['S24a'], needAny:['S18a'], optimal:5,
+    sims:{ S17:{to:'S18', label:'Mô phỏng camera: quét xong mặt sàn'} },
+    text:'Bạn đang đứng trước nền phế tích Tử Cấm Thành. Hãy dùng tính năng AR để thấy lại ngai vàng, chuyển thuyết minh sang tiếng Anh, rồi mở niên biểu của vị vua liên quan. (Không có thanh toán thật.)' },
+  { id:'T5', title:'Dẫn đường Trợ năng', persona:'Bà Lan', start:'Main', goal:['S14'], needAny:['S13b'], optimal:6,
+    text:'Hãy tưởng tượng bạn là người khiếm thị, đang đeo tai nghe và vòng tay rung. Từ màn hình chào, hãy bật chế độ Trợ năng, kết nối vòng tay rung và bắt đầu được dẫn đường tới Điện Thái Hòa.' },
+];
+const SUS_Q = [
+  'Tôi nghĩ tôi sẽ muốn sử dụng ứng dụng này thường xuyên.',
+  'Tôi thấy ứng dụng phức tạp một cách không cần thiết.',
+  'Tôi thấy ứng dụng dễ sử dụng.',
+  'Tôi nghĩ tôi cần người hỗ trợ kỹ thuật để có thể sử dụng ứng dụng này.',
+  'Tôi thấy các chức năng của ứng dụng được tích hợp tốt với nhau.',
+  'Tôi thấy ứng dụng có quá nhiều điểm thiếu nhất quán.',
+  'Tôi nghĩ hầu hết mọi người sẽ học cách dùng ứng dụng này rất nhanh.',
+  'Tôi thấy ứng dụng rất rườm rà, khó thao tác.',
+  'Tôi cảm thấy rất tự tin khi sử dụng ứng dụng.',
+  'Tôi cần học nhiều thứ trước khi có thể sử dụng ứng dụng này.',
+];
+const INTERVIEW = [
+  ['q1','Bạn mô tả trải nghiệm chung khi dùng ứng dụng thế nào? Phần nào hữu ích hoặc thú vị nhất?'],
+  ['q2','Có tính năng hay màn hình nào gây khó hiểu hoặc khó dùng không? Điều gì khiến bạn bối rối?'],
+  ['q3','Ứng dụng đáp ứng nhu cầu tham quan di sản của bạn đến đâu? Bạn muốn thêm hoặc sửa gì?'],
+  ['q4','Bạn nghĩ gì về việc dùng rung và âm thanh 3D để dẫn đường và cảm nhận di tích?'],
+];
+const SURVEY = [
+  ['age','Nhóm tuổi',['18–24','25–34','35–44','45–59','60 trở lên']],
+  ['gender','Giới tính',['Nữ','Nam','Khác','Không muốn trả lời']],
+  ['tech','Mức độ dùng điện thoại cảm ứng',['Cơ bản','Trung bình','Thành thạo']],
+  ['visited','Bạn đã từng đến Đại Nội Huế chưa?',['Chưa','Một lần','Nhiều lần']],
+  ['guide','Bạn có dùng audio guide hoặc ứng dụng khi tham quan không?',['Chưa bao giờ','Thỉnh thoảng','Thường xuyên']],
+  ['vision','Thị lực và trình đọc màn hình',['Không gặp khó khăn','Thị lực kém, không dùng trình đọc màn hình','Có dùng TalkBack hoặc VoiceOver']],
+  ['lang','Ngôn ngữ bạn thường dùng',['Tiếng Việt','English','Khác']],
+];
+const STEPS = ['Giới thiệu','Đồng ý','Khảo sát','Nhiệm vụ','SUS','Phỏng vấn','Hoàn tất'];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtT = ms => { const s = Math.round(ms/1000); return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); };
+const susScore = a => (!a || a.some(v => !v)) ? null : a.reduce((t,v,i) => t + (i%2===0 ? v-1 : 5-v), 0) * 2.5;
+const store = { get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } }, set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }, del(k){ try{ localStorage.removeItem(k); }catch(e){} } };
+
+let db = null, user = null, S = null, view = 'intro', ti = 0, run = null, results = [], imported = [];
+(async () => {
+  await who();
+  if (view === 'results') renderResults();
+})();
+
+let canEdit = false, uid = null;
+async function who() {
+  if (!user) return;
+  try { canEdit = await user.canEdit(); } catch(e) { canEdit = false; }
+  try { uid = await user.id(); } catch(e) { uid = null; }
+}
+async function save() {
+  if (!S) return;
+  store.set('svh-session', S);
+  if (!db) { S._saved = false; return; }
+  const d = JSON.parse(JSON.stringify(S)); delete d._saved;
+  try {
+    if (canEdit) await db.collection('sessions').doc(S.id).set(d);
+    else if (uid) await db.collection('inbox').doc(uid).set(d);
+    else throw new Error('no target');
+    S._saved = true;
+  } catch(e) { S._saved = false; }
+}
+
+function stepBar(i) {
+  $('#steps').innerHTML = view === 'results' ? '<span class="on">Kết quả</span>' :
+    STEPS.map((s,k) => `<span class="${k===i?'on':k<i?'done':''}">${k<i?'✓ ':''}${esc(s)}</span>`).join('');
+}
+function show(html, step) { stepBar(step); $('#app').innerHTML = html; window.scrollTo(0,0); }
+
+/* ---------- views ---------- */
+function renderIntro() {
+  view = 'intro';
+  const resume = store.get('svh-session');
+  show(`<section class="card narrow">
+    <span class="eyebrow">Ứng dụng tham quan Đại Nội Huế · bản prototype</span>
+    <h1>Cảm ơn bạn đã tham gia buổi kiểm thử</h1>
+    <p>Sense Vietnam's Heritage là ứng dụng giúp khách tham quan Đại Nội Huế bằng âm thanh 3D, rung và AR. Buổi kiểm thử này nhằm tìm ra chỗ khó dùng trong thiết kế, <b>không phải để đánh giá bạn</b>. Không có câu trả lời sai.</p>
+    <ul class="plain">
+      <li>Thời gian khoảng 25–30 phút, gồm 5 nhiệm vụ ngắn trên prototype.</li>
+      <li>Prototype chưa phải ứng dụng thật: rung, camera và định vị được mô phỏng bằng nút bấm. Không có thanh toán thật.</li>
+      <li>Nếu có người điều phối, hãy vừa làm vừa nói to suy nghĩ của bạn.</li>
+      <li>Bạn có thể dừng bất cứ lúc nào.</li>
+    </ul>
+    <div class="row">
+      <button class="btn primary" id="go">Bắt đầu</button>
+      ${resume && !resume.finishedAt ? `<button class="btn" id="resume">Tiếp tục phiên đang dở (${esc(resume.pid)})</button>` : ''}
+    </div>
+    <p class="note">Dành cho người điều phối: <button class="link" id="toResults">xem kết quả các phiên</button>.</p>
+  </section>`, 0);
+  $('#go').onclick = renderConsent;
+  $('#toResults').onclick = () => { location.hash = 'ket-qua'; };
+  if ($('#resume')) $('#resume').onclick = () => { S = resume; const n = S.tasks.length; if (n < TASKS.length) { ti = n; renderBrief(); } else if (!S.sus) renderSUS(); else renderInterview(); };
+}
+
+function renderConsent() {
+  view = 'consent';
+  show(`<section class="card narrow">
+    <h2>Thông tin và đồng ý tham gia</h2>
+    <p>Đây là kiểm thử cho đồ án môn Trải nghiệm người dùng. Trang ghi lại những gì bạn chạm trong prototype, thời gian làm mỗi nhiệm vụ, câu trả lời khảo sát và ý kiến của bạn. Trang <b>không</b> hỏi họ tên, số điện thoại hay email. Dữ liệu chỉ dùng cho báo cáo đồ án, được trình bày dưới dạng mã người tham gia (P1, P2…).</p>
+    <label class="check"><input type="checkbox" id="c1"><span>Tôi đã đọc thông tin trên và đồng ý tham gia.</span></label>
+    <label class="check"><input type="checkbox" id="c2"><span>Tôi đồng ý để người điều phối ghi chú, ghi âm hoặc ghi hình màn hình trong buổi test (nếu có).</span></label>
+    <label class="check"><input type="checkbox" id="c3"><span>Tôi hiểu mình có thể dừng bất cứ lúc nào mà không cần giải thích.</span></label>
+    <div class="row"><button class="btn primary" id="next" disabled>Tiếp tục</button><button class="btn ghost" id="back">Quay lại</button></div>
+  </section>`, 1);
+  const upd = () => { $('#next').disabled = !($('#c1').checked && $('#c3').checked); };
+  ['#c1','#c2','#c3'].forEach(s => $(s).onchange = upd);
+  $('#back').onclick = renderIntro;
+  $('#next').onclick = () => {
+    S = { id: 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,6), pid:'', startedAt: new Date().toISOString(),
+          consent: { participate:true, record: $('#c2').checked }, survey:{}, tasks:[], sus:null, interview:{}, notes:{},
+          device: { w: innerWidth, h: innerHeight, touch: matchMedia('(pointer:coarse)').matches } };
+    renderSurvey();
+  };
+}
+
+function renderSurvey() {
+  view = 'survey';
+  show(`<section class="card narrow">
+    <h2>Một vài câu hỏi về bạn</h2>
+    <p class="muted">Giúp hiểu bạn gần với nhóm người dùng nào.</p>
+    <div class="grid2">
+      <label class="f">Mã người tham gia <input type="text" id="pid" placeholder="Ví dụ: P1 (người điều phối cung cấp)"></label>
+      <label class="f">Hình thức
+        <select id="mode"><option>Có điều phối, gặp trực tiếp</option><option>Có điều phối, online</option><option>Tự làm, không có điều phối</option></select></label>
+      <label class="f">Nghề nghiệp <input type="text" id="job" placeholder="Ví dụ: sinh viên Lịch sử"></label>
+      ${SURVEY.map(([k,l,o]) => `<label class="f">${esc(l)}<select id="sv-${k}"><option value="">Chọn…</option>${o.map(x=>`<option>${esc(x)}</option>`).join('')}</select></label>`).join('')}
+    </div>
+    <p class="note" id="err" hidden>Vui lòng trả lời đủ các câu chọn.</p>
+    <div class="row"><button class="btn primary" id="next">Tiếp tục</button></div>
+  </section>`, 2);
+  $('#next').onclick = () => {
+    const sv = { job: $('#job').value.trim() };
+    for (const [k] of SURVEY) sv[k] = $('#sv-'+k).value;
+    if (SURVEY.some(([k]) => !sv[k])) { $('#err').hidden = false; return; }
+    S.survey = sv; S.mode = $('#mode').value;
+    S.pid = $('#pid').value.trim() || ('P-' + S.id.slice(-4).toUpperCase());
+    save(); renderContext();
+  };
+}
+
+function renderContext() {
+  view = 'context';
+  show(`<section class="card narrow">
+    <span class="eyebrow">Bối cảnh</span>
+    <h2>Hãy tưởng tượng bạn đang ở Đại Nội Huế</h2>
+    <p>Bạn sẽ dùng prototype trong khung điện thoại để làm 5 nhiệm vụ. Mỗi nhiệm vụ có một tình huống ngắn. Hãy làm như khi dùng ứng dụng thật.</p>
+    <ul class="plain">
+      <li>Chạm vào các nút trong khung điện thoại. Có thể cuộn màn hình.</li>
+      <li>Khi một nhiệm vụ cần cảm biến (camera, Bluetooth), một nút <b>Mô phỏng</b> sẽ hiện bên cạnh. Chỉ bấm khi bạn nghĩ đó là bước tiếp theo.</li>
+      <li>Nhiệm vụ tự kết thúc khi bạn làm xong. Nếu bạn nghĩ mình đã xong nhưng chưa thấy thông báo, bấm <b>Tôi đã xong</b>. Nếu bế tắc, bấm <b>Bỏ qua</b>.</li>
+      <li>Một số chỗ trong prototype chưa bấm được. Đó là lỗi của thiết kế, không phải của bạn.</li>
+    </ul>
+    <div class="row"><button class="btn primary" id="next">Bắt đầu nhiệm vụ 1</button></div>
+  </section>`, 3);
+  $('#next').onclick = () => { ti = 0; renderBrief(); };
+}
+
+function renderBrief() {
+  view = 'brief';
+  const t = TASKS[ti];
+  show(`<section class="card narrow">
+    <span class="eyebrow">Nhiệm vụ ${ti+1} / ${TASKS.length} · ${esc(t.title)}</span>
+    <div class="tasktext">${esc(t.text)}</div>
+    <p class="muted">Đọc kỹ tình huống. Thời gian bắt đầu tính khi bạn bấm nút bên dưới.</p>
+    <div class="row"><button class="btn primary" id="start">Bắt đầu nhiệm vụ</button></div>
+  </section>`, 3);
+  $('#start').onclick = startTask;
+}
+
+function startTask() {
+  view = 'run';
+  const t = TASKS[ti];
+  run = { t, t0: performance.now(), clicks: [], path: [], sims: 0, lastClickAt: 0, lastClick: null, ended: false };
+  show(`<section class="run">
+    <div class="card brief">
+      <span class="eyebrow">Nhiệm vụ ${ti+1} / ${TASKS.length} · ${esc(t.title)}</span>
+      <div class="tasktext">${esc(t.text)}</div>
+      <div id="simbox"></div>
+      <div class="row"><button class="btn" id="claim">Tôi đã xong</button><button class="btn ghost" id="skip">Bỏ qua</button></div>
+      <p class="tasktext" id="warn" role="alert" hidden style="font-size:15px"></p>
+      <span class="timer" id="timer">0:00</span>
+    </div>
+    <div class="phone" id="phone"><iframe id="proto" title="Prototype Sense Vietnam's Heritage" src="${t.start}.dc.html"></iframe><button class="btn phonesim" id="phonesim" hidden></button><div class="veil" id="veil">Đang tải prototype…</div></div>
+  </section>`, 3);
+  fitPhone();
+  const fr = $('#proto');
+  fr.addEventListener('load', onFrameLoad);
+  const tooSoon = () => !reached() && !run.warned && (run.clicks.filter(c => !c.sim).length < 2 || performance.now() - run.t0 < 15000);
+  const guard = (fn, msg) => () => { if (tooSoon()) { run.warned = true; const w = $('#warn'); w.textContent = msg; w.hidden = false; return; } fn(); };
+  $('#claim').onclick = guard(() => endTask(reached() ? 'success' : 'wrong'), 'Bạn chưa thao tác trong khung điện thoại bên cạnh. Hãy thử làm nhiệm vụ bằng cách chạm vào điện thoại. Nếu bạn thật sự đã xong, bấm "Tôi đã xong" lần nữa.');
+  $('#skip').onclick = guard(() => endTask('skip'), 'Bạn thử chạm vào khung điện thoại bên cạnh để làm nhiệm vụ nhé. Nếu vẫn muốn bỏ qua, bấm "Bỏ qua" lần nữa.');
+  run.tick = setInterval(() => { const el = $('#timer'); if (el) el.textContent = fmtT(performance.now() - run.t0); }, 500);
+  run.slow = setTimeout(() => { const v = $('#veil'); if (v && !v.hidden) v.textContent = 'Prototype tải chậm. Hãy đợi thêm hoặc tải lại trang.'; }, 9000);
+}
+
+function screenOf(w) { try { return decodeURIComponent(w.location.pathname.split('/').pop() || '').replace('.dc.html','').split('?')[0]; } catch(e) { return '?'; } }
+function reached() { const t = run.t; const cur = run.path[run.path.length-1]; return t.goal.includes(cur) && (!t.needAny || run.path.some(p => t.needAny.includes(p))); }
+
+function onFrameLoad() {
+  if (!run || run.ended) return;
+  const fr = $('#proto'); let w, d;
+  try { w = fr.contentWindow; d = w.document; } catch(e) { return; }
+  $('#veil').hidden = true;
+  const scr = screenOf(w);
+  const now = performance.now();
+  if (run.lastClick && now - run.lastClickAt < 4000 && !run.lastClick.nav) run.lastClick.nav = scr;
+  run.path.push(scr);
+  try { const st = d.createElement('style'); st.textContent = '::-webkit-scrollbar{display:none}html{scrollbar-width:none}'; d.head.appendChild(st); } catch(e) {}
+  d.addEventListener('click', e => {
+    const p = e.composedPath ? e.composedPath() : [e.target];
+    const hit = p.find(n => n && n.tagName && /^(A|BUTTON|INPUT|LABEL|SELECT)$/.test(n.tagName)) || p.find(n => n && n.getAttribute && n.getAttribute('role'));
+    const txt = hit ? (hit.textContent || hit.getAttribute('aria-label') || hit.getAttribute('title') || '').replace(/\s+/g,' ').trim().slice(0,40) : '';
+    const rec = { s: scr, x: Math.round(e.clientX), y: Math.round(e.clientY + (w.scrollY||0)), t: Math.round(performance.now() - run.t0), el: hit ? hit.tagName.toLowerCase() : '', txt };
+    run.clicks.push(rec); run.lastClick = rec; run.lastClickAt = performance.now();
+  }, true);
+  const sim = run.t.sims && run.t.sims[scr];
+  $('#simbox').innerHTML = sim ? `<button class="btn sim" id="simbtn">${esc(sim.label)}<small>Bấm khi bạn sẵn sàng cho bước này</small></button>` : '';
+  const doSim = () => { run.sims++; run.lastClick = null; run.path.push('(mô phỏng)'); run.clicks.push({ s: scr, sim: true, t: Math.round(performance.now() - run.t0), nav: sim.to }); $('#simbox').innerHTML = ''; $('#phonesim').hidden = true; $('#proto').src = sim.to + '.dc.html'; };
+  const ps = $('#phonesim'); ps.hidden = !sim;
+  if (sim) { $('#simbtn').onclick = doSim; ps.textContent = '▶ ' + sim.label; ps.onclick = doSim; }
+  if (reached()) setTimeout(() => endTask('success', true), 700);
+}
+
+function fitPhone() {
+  const ph = $('#phone'), fr = $('#proto'); if (!ph || !fr) return;
+  const narrow = innerWidth <= 820;
+  const availW = narrow ? Math.min(innerWidth - 32 - 12, 393) : 393;
+  const availH = Math.max(480, innerHeight - (narrow ? 60 : 70));
+  const s = Math.min(availW / 393, availH / 852, 1);
+  fr.style.transform = `scale(${s})`;
+  ph.style.width = (393 * s + (narrow ? 12 : 16)) + 'px';
+  ph.style.height = (852 * s + (narrow ? 12 : 16)) + 'px';
+}
+addEventListener('resize', fitPhone);
+
+function endTask(status, auto) {
+  if (!run || run.ended) return;
+  run.ended = true; clearInterval(run.tick); clearTimeout(run.slow);
+  view = 'seq';
+  const t = run.t;
+  const real = run.clicks.filter(c => !c.sim);
+  const navTaps = real.filter(c => c.nav).length;
+  run.result = { id: t.id, status, timeMs: Math.round(performance.now() - run.t0), taps: real.length, navTaps, sims: run.sims,
+                 optimal: t.optimal, path: run.path, clicks: run.clicks.slice(0, 400), seq: null, comment: '' };
+  const msg = status === 'success' ? '<span class="done-badge">✓ Bạn đã hoàn thành nhiệm vụ</span>' : status === 'skip' ? '<span class="muted">Đã bỏ qua nhiệm vụ này.</span>' : '<span class="muted">Đã ghi nhận.</span>';
+  show(`<section class="card narrow">
+    ${msg}
+    <h2>Nhiệm vụ này khó hay dễ?</h2>
+    <div class="scale" style="--n:7" role="radiogroup" aria-label="Mức độ dễ, 1 là rất khó, 7 là rất dễ">
+      ${[1,2,3,4,5,6,7].map(v => `<label class="opt"><input type="radio" name="seq" value="${v}"><span>${v}</span></label>`).join('')}
+    </div>
+    <div class="ends"><span>1 · Rất khó</span><span>7 · Rất dễ</span></div>
+    <label class="f">Có điều gì làm bạn bối rối hoặc bất ngờ không? <span class="muted" style="font-weight:400">(không bắt buộc)</span><textarea id="cmt"></textarea></label>
+    <div class="row"><button class="btn primary" id="next" disabled>${ti < TASKS.length-1 ? 'Sang nhiệm vụ ' + (ti+2) : 'Sang bảng hỏi SUS'}</button></div>
+  </section>`, 3);
+  document.querySelectorAll('input[name=seq]').forEach(r => r.onchange = () => $('#next').disabled = false);
+  $('#next').onclick = () => {
+    run.result.seq = +document.querySelector('input[name=seq]:checked').value;
+    run.result.comment = $('#cmt').value.trim();
+    S.tasks[ti] = run.result; run = null; save();
+    if (ti < TASKS.length - 1) { ti++; renderBrief(); } else renderSUS();
+  };
+}
+
+function renderSUS() {
+  view = 'sus';
+  show(`<section class="card narrow">
+    <h2>Bảng hỏi SUS</h2>
+    <p class="muted">Chấm mỗi câu từ 1 (Hoàn toàn không đồng ý) đến 5 (Hoàn toàn đồng ý). Hãy trả lời theo cảm nhận đầu tiên.</p>
+    <div class="sus">${SUS_Q.map((q,i) => `<div class="q" role="radiogroup" aria-label="Câu ${i+1}">
+      <span><b>${i+1}.</b> ${esc(q)}</span>
+      <div class="scale" style="--n:5">${[1,2,3,4,5].map(v => `<label class="opt"><input type="radio" name="sus${i}" value="${v}"><span>${v}</span></label>`).join('')}</div>
+      <div class="ends"><span>Hoàn toàn không đồng ý</span><span>Hoàn toàn đồng ý</span></div></div>`).join('')}</div>
+    <div class="row"><button class="btn primary" id="next" disabled>Tiếp tục</button><span class="note" id="left"></span></div>
+  </section>`, 4);
+  const upd = () => { const n = SUS_Q.filter((_,i) => document.querySelector(`input[name=sus${i}]:checked`)).length; $('#next').disabled = n < 10; $('#left').textContent = n < 10 ? `Còn ${10-n} câu` : ''; };
+  document.querySelectorAll('.sus input').forEach(r => r.onchange = upd); upd();
+  $('#next').onclick = () => { S.sus = SUS_Q.map((_,i) => +document.querySelector(`input[name=sus${i}]:checked`).value); S.susScore = susScore(S.sus); save(); renderInterview(); };
+}
+
+function renderInterview() {
+  view = 'interview';
+  show(`<section class="card narrow">
+    <h2>Câu hỏi sau buổi test</h2>
+    <p class="muted">Nếu có người điều phối, họ sẽ hỏi trực tiếp và có thể ghi thay bạn. Viết ngắn cũng được.</p>
+    ${INTERVIEW.map(([k,q]) => `<label class="f">${esc(q)}<textarea id="iv-${k}">${esc(S.interview?.[k] || '')}</textarea></label>`).join('')}
+    <div class="row"><button class="btn primary" id="next">Gửi và kết thúc</button></div>
+  </section>`, 5);
+  $('#next').onclick = async () => {
+    for (const [k] of INTERVIEW) S.interview[k] = $('#iv-'+k).value.trim();
+    S.finishedAt = new Date().toISOString(); await save(); renderDone();
+  };
+}
+
+async function makeCode(obj) {
+  const d = JSON.parse(JSON.stringify(obj)); delete d._saved;
+  d.tasks = d.tasks.map(t => ({ ...t, clicks: (t.clicks||[]).slice(0,120) }));
+  const bytes = new TextEncoder().encode(JSON.stringify(d));
+  let out = bytes, tag = 'SVH0:';
+  try { if (window.CompressionStream) { const cs = new Blob([bytes]).stream().pipeThrough(new CompressionStream('gzip')); out = new Uint8Array(await new Response(cs).arrayBuffer()); tag = 'SVH1:'; } } catch(e) {}
+  let bin = ''; for (let i = 0; i < out.length; i += 0x8000) bin += String.fromCharCode.apply(null, out.subarray(i, i + 0x8000));
+  return tag + btoa(bin);
+}
+async function readCode(code) {
+  code = code.trim(); const tag = code.slice(0,5); const bin = atob(code.slice(5));
+  let bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+  if (tag === 'SVH1:') { const ds = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')); bytes = new Uint8Array(await new Response(ds).arrayBuffer()); }
+  else if (tag !== 'SVH0:') throw new Error('bad tag');
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+async function renderDone() {
+  view = 'done';
+  const code = await makeCode(S);
+  store.del('svh-session');
+  show(`<section class="card narrow">
+    <span class="done-badge">✓ Đã hoàn tất</span>
+    <h2>Cảm ơn bạn rất nhiều!</h2>
+    <p>Những gì bạn vừa làm giúp tìm ra chỗ cần sửa trước khi phát triển ứng dụng thật. Kết quả sẽ được tổng hợp ẩn danh theo mã <b>${esc(S.pid)}</b>. Nếu bạn muốn rút dữ liệu của mình hoặc có câu hỏi, hãy báo người điều phối đã mời bạn kèm mã này.</p>
+    ${S._saved ? '<p class="muted">Kết quả đã được lưu tự động cho người điều phối.</p>' :
+      `<p><b>Bước cuối:</b> sao chép mã kết quả bên dưới và gửi cho người điều phối (qua Zalo, Messenger hoặc email).</p>
+       <div class="code" id="code">${esc(code)}</div>
+       <div class="row"><button class="btn primary" id="copy">Sao chép mã kết quả</button><span class="note" id="copied"></span></div>`}
+  </section>`, 6);
+  if ($('#copy')) $('#copy').onclick = () => {
+    const done = () => $('#copied').textContent = 'Đã sao chép.';
+    navigator.clipboard?.writeText(code).then(done).catch(() => { const r = document.createRange(); r.selectNodeContents($('#code')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $('#copied').textContent = 'Đã chọn mã, hãy nhấn Ctrl/Cmd + C.'; });
+  };
+}
+
+/* ---------- results (facilitator) ---------- */
+let unsub = null, unsub2 = null, inbox = [];
+function median(a) { if (!a.length) return null; const b = [...a].sort((x,y)=>x-y); const m = b.length>>1; return b.length%2 ? b[m] : (b[m-1]+b[m])/2; }
+function mean(a) { return a.length ? a.reduce((x,y)=>x+y,0)/a.length : null; }
+const n1 = v => v == null ? '–' : (Math.round(v*10)/10).toLocaleString('vi-VN');
+
+function allSessions() { const m = new Map(); for (const s of [...inbox, ...results, ...imported]) if (s && s.id) m.set(s.id, s); return [...m.values()].filter(s => s.tasks?.length).sort((a,b) => String(a.pid).localeCompare(String(b.pid), 'vi', {numeric:true})); }
+
+function renderResults() {
+  view = 'results';
+  if (db && !unsub) {
+    try { unsub = db.collection('sessions').onSnapshot(q => { results = q.docs.map(d => ({ ...d.data(), _doc: 'sessions/' + d.id })); if (view === 'results') drawResults(); }, () => {}); } catch(e) {}
+    try { unsub2 = db.collection('inbox').onSnapshot(q => { inbox = q.docs.map(d => ({ ...d.data(), _doc: 'inbox/' + d.id })); if (view === 'results') drawResults(); }, () => {}); } catch(e) {}
+  }
+  stepBar(0);
+  drawResults();
+}
+
+function drawResults() {
+  const ss = allSessions();
+  const fin = ss.filter(s => s.susScore != null);
+  const allT = ss.flatMap(s => s.tasks.filter(Boolean));
+  const succ = allT.filter(t => t.status === 'success').length;
+  const taskRows = TASKS.map(t => {
+    const r = ss.map(s => s.tasks.find(x => x && x.id === t.id)).filter(Boolean);
+    const ok = r.filter(x => x.status === 'success');
+    return { t, n: r.length, ok: ok.length, time: median(ok.map(x => x.timeMs)), taps: mean(r.map(x => x.navTaps)), all: mean(r.map(x => x.taps)), seq: mean(r.map(x => x.seq).filter(Boolean)) };
+  });
+  $('#app').innerHTML = `<div style="display:flex;flex-direction:column;gap:20px">
+    <section class="card">
+      <span class="eyebrow">Dành cho người điều phối</span>
+      <h1>Kết quả kiểm thử</h1>
+      <p class="muted">${db ? 'Phiên làm trên thiết bị đã đăng nhập được lưu tự động. ' : 'Trang đang chạy không có kho lưu chung, kết quả chỉ nằm trong trình duyệt này. '}Với người tham gia làm từ xa, dán mã kết quả họ gửi vào ô bên dưới.</p>
+      <label class="f">Mã kết quả <textarea id="imp" placeholder="SVH1:…"></textarea></label>
+      <div class="row"><button class="btn primary" id="doImp">Thêm phiên</button><button class="btn" id="copyAll">Sao chép toàn bộ dữ liệu (JSON)</button><button class="btn ghost" id="home">Về trang test</button><span class="note" id="impMsg"></span></div>
+    </section>
+    ${ss.length ? `
+    <div class="stats">
+      <div class="stat"><span class="muted">Người tham gia</span><b>${ss.length}</b><span class="note">${fin.length} đã làm xong SUS</span></div>
+      <div class="stat"><span class="muted">Điểm SUS trung bình</span><b>${n1(mean(fin.map(s=>s.susScore)))}</b><span class="note">Mốc trung bình: 68</span></div>
+      <div class="stat"><span class="muted">Tỷ lệ hoàn thành</span><b>${allT.length ? Math.round(succ/allT.length*100) : 0}%</b><span class="note">${succ} / ${allT.length} lượt nhiệm vụ</span></div>
+      <div class="stat"><span class="muted">SEQ trung bình</span><b>${n1(mean(allT.map(t=>t.seq).filter(Boolean)))}</b><span class="note">Thang 1–7, mục tiêu ≥ 5,5</span></div>
+    </div>
+    <section class="card"><h2>Theo nhiệm vụ</h2><div class="tbl"><table>
+      <thead><tr><th>Nhiệm vụ</th><th>Hoàn thành</th><th></th><th>Thời gian (trung vị, lượt thành công)</th><th>Chạm chuyển màn TB / tối ưu</th><th>Tổng chạm TB</th><th>SEQ TB</th></tr></thead>
+      <tbody>${taskRows.map(r => `<tr><td><b>${r.t.id}</b> ${esc(r.t.title)}</td><td>${r.ok} / ${r.n}</td><td><div class="bar"><i style="width:${r.n ? r.ok/r.n*100 : 0}%"></i></div></td><td>${r.time==null?'–':fmtT(r.time)}</td><td>${n1(r.taps)} / ${r.t.optimal}</td><td>${n1(r.all)}</td><td>${n1(r.seq)}</td></tr>`).join('')}</tbody></table></div></section>
+    <section class="card"><h2>Người tham gia</h2><div class="tbl"><table>
+      <thead><tr><th>Mã</th><th>Tuổi</th><th>Giới tính</th><th>Nghề nghiệp</th><th>Điện thoại cảm ứng</th><th>Đến Đại Nội</th><th>Audio guide</th><th>Thị lực</th><th>Hình thức</th><th>SUS</th></tr></thead>
+      <tbody>${ss.map(s => `<tr><td><b>${esc(s.pid)}</b></td><td>${esc(s.survey?.age)}</td><td>${esc(s.survey?.gender)}</td><td>${esc(s.survey?.job)}</td><td>${esc(s.survey?.tech)}</td><td>${esc(s.survey?.visited)}</td><td>${esc(s.survey?.guide)}</td><td>${esc(s.survey?.vision)}</td><td>${esc(s.mode)}</td><td>${s.susScore==null?'–':n1(s.susScore)}</td></tr>`).join('')}</tbody></table></div></section>
+    <section style="display:flex;flex-direction:column;gap:10px"><h2>Chi tiết từng phiên</h2>
+      ${ss.map(s => `<details class="p"><summary>${esc(s.pid)} <span class="muted" style="font-weight:400">${esc((s.startedAt||'').slice(0,16).replace('T',' '))}</span> ${s.finishedAt ? '' : '<span class="pill wrong">Chưa xong</span>'}</summary><div>
+        <div class="tbl"><table><thead><tr><th>Nhiệm vụ</th><th>Kết quả</th><th>Thời gian</th><th>Chạm</th><th>SEQ</th><th>Đường đi</th><th>Ý kiến</th></tr></thead><tbody>
+        ${s.tasks.filter(Boolean).map(t => `<tr><td><b>${t.id}</b></td><td><span class="pill ${t.status}">${t.status==='success'?'Hoàn thành':t.status==='skip'?'Bỏ qua':'Chưa đúng'}</span></td><td>${fmtT(t.timeMs)}</td><td>${t.navTaps} / ${t.taps}</td><td>${t.seq ?? '–'}</td><td class="path">${esc((t.path||[]).join(' → '))}</td><td>${esc(t.comment)}</td></tr>`).join('')}
+        </tbody></table></div>
+        ${Object.values(s.interview||{}).some(Boolean) ? `<div><h3>Phỏng vấn</h3><ul class="plain">${INTERVIEW.map(([k,q]) => s.interview?.[k] ? `<li><span class="muted">${esc(q)}</span><br>${esc(s.interview[k])}</li>` : '').join('')}</ul></div>` : ''}
+        <label class="f">Ghi chú của người điều phối (nói to suy nghĩ, trích lời, hành vi quan sát)<textarea data-note="${esc(s.id)}">${esc(s.notes?.general || '')}</textarea></label>
+        <div class="row"><span class="note" data-nm="${esc(s.id)}"></span>${db && canEdit && (s._doc||'').startsWith('sessions/') ? `<button class="btn danger" data-del="${esc(s.id)}">Xoá phiên này</button>` : ''}</div>
+      </div></details>`).join('')}
+    </section>` : `<section class="card"><h2>Chưa có phiên nào</h2><p class="muted">Gửi đường link của trang này cho người tham gia. Khi họ làm xong, kết quả sẽ hiện ở đây, hoặc họ gửi lại mã kết quả để bạn dán vào ô phía trên.</p></section>`}
+  </div>`;
+  $('#home').onclick = () => { location.hash = ''; };
+  $('#doImp').onclick = async () => {
+    const raw = $('#imp').value.split(/\s+/).filter(x => /^SVH[01]:/.test(x));
+    let ok = 0;
+    for (const c of raw) { try { const s = await readCode(c); imported.push(s); ok++; if (db && canEdit) { try { await db.collection('sessions').doc(s.id).set(s); s._doc = 'sessions/' + s.id; } catch(e) {} } } catch(e) {} }
+    $('#impMsg').textContent = ok ? `Đã thêm ${ok} phiên.` : 'Mã không hợp lệ. Hãy kiểm tra đã sao chép đủ mã chưa.';
+    if (ok) drawResults();
+  };
+  $('#copyAll').onclick = () => { const txt = JSON.stringify(allSessions(), null, 1); navigator.clipboard?.writeText(txt).then(() => $('#impMsg').textContent = 'Đã sao chép dữ liệu.').catch(() => $('#impMsg').textContent = 'Không sao chép được trên thiết bị này.'); };
+  document.querySelectorAll('[data-note]').forEach(ta => ta.onchange = async () => {
+    const id = ta.dataset.note; const s = allSessions().find(x => x.id === id); if (!s) return;
+    s.notes = { ...(s.notes||{}), general: ta.value };
+    const nm = document.querySelector(`[data-nm="${id}"]`);
+    if (db) { try { if (s._doc && s._doc.startsWith('sessions/')) await db.doc(s._doc).update({ notes: s.notes }); else { const d = { ...s }; delete d._doc; await db.collection('sessions').doc(id).set(d); } nm.textContent = 'Đã lưu ghi chú.'; } catch(e) { nm.textContent = 'Chưa lưu được ghi chú. Bạn cần quyền chỉnh sửa trang này.'; } }
+    else nm.textContent = 'Ghi chú chỉ lưu tạm trên trang này.';
+  });
+  document.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+    if (b.dataset.armed !== '1') { b.dataset.armed = '1'; b.textContent = 'Bấm lần nữa để xoá'; return; }
+    const s = allSessions().find(x => x.id === b.dataset.del);
+    try { if (s && s._doc) await db.doc(s._doc).delete(); imported = imported.filter(x => x.id !== b.dataset.del); drawResults(); } catch(e) { b.textContent = 'Không xoá được'; }
+  });
+}
+
+/* ---------- routing ---------- */
+function route() { if (location.hash === '#ket-qua') renderResults(); else if (view === 'results' || !S) renderIntro(); }
+addEventListener('hashchange', route);
+route();
+</script>

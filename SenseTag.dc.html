@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>SenseTag</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 5px; font-family: Inter, sans-serif; font-size: 11.5px; line-height: 16px; font-weight: 600; white-space: nowrap; background: {{bg}}; color: {{fg}}">
+  <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: {{dot}}"></span>{{label}}
+</span>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"sense":{"editor":"enum","default":"audio","options":["audio","haptic","ar","neutral"]},"label":{"editor":"text","default":""},"$preview":{"width":160,"height":40}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var s = this.props.sense ?? 'audio';
+    var S = {
+      audio: { bg: '#E1EFEA', fg: '#064D38', dot: '#0E7C5B', label: 'Âm thanh 3D' },
+      haptic: { bg: '#FBF3DF', fg: '#7D5100', dot: '#D4A017', label: 'Rung' },
+      ar: { bg: '#E8F0F8', fg: '#185FA5', dot: '#185FA5', label: 'AR' },
+      neutral: { bg: '#F1F4F2', fg: '#456358', dot: '#8ABFB0', label: 'Đã đến' }
+    };
+    var t = S[s] || S.audio;
+    return { bg: t.bg, fg: t.fg, dot: t.dot, label: this.props.label || t.label };
+  }
+}
+</script>
+</body>
+</html>

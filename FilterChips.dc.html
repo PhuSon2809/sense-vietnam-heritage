@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>FilterChips</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div role="tablist" aria-label="{{label}}" style="width: 100%; display: flex; gap: 8px; overflow-x: auto; font-family: Inter, sans-serif">
+  <sc-for list="{{items}}" as="it" hint-placeholder-count="4">
+    <button type="button" role="tab" aria-selected="{{it.selected}}" onClick="{{it.pick}}" style="flex: none; height: 44px; padding: 0 14px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; background: {{it.bg}}; color: {{it.fg}}; border: {{it.border}}">{{it.text}}</button>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"options":{"editor":"text","default":"Tất cả · 6,Kiến trúc,Âm nhạc,Có AR"},"selected":{"editor":"int","default":0,"min":0,"max":8},"label":{"editor":"text","default":"Lọc theo chủ đề"},"accent":{"editor":"enum","default":"jade","options":["jade","forest"]},"$preview":{"width":361,"height":44}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var opts = String(this.props.options ?? 'Tất cả · 6,Kiến trúc,Âm nhạc,Có AR').split(',');
+    var sel = (this.state && this.state.sel !== undefined) ? this.state.sel : Number(this.props.selected ?? 0);
+    var on = (this.props.accent ?? 'jade') === 'forest' ? '#1B4D3E' : '#0E7C5B';
+    return {
+      label: this.props.label ?? 'Lọc theo chủ đề',
+      items: opts.map(function (t, i) {
+        var txt = t.trim();
+        var ar = /AR/.test(txt);
+        var s = i === sel;
+        return {
+          text: txt,
+          selected: s ? 'true' : 'false',
+          bg: s ? (ar ? '#185FA5' : on) : '#FFFFFF',
+          fg: s ? '#FFFFFF' : (ar ? '#185FA5' : '#2F5247'),
+          border: s ? '1px solid transparent' : (ar ? '1px solid #9DB8D3' : '1px solid #A8CEBE'),
+          pick: function () { self.setState({ sel: i }); }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

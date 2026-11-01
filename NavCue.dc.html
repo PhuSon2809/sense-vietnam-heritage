@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>NavCue</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<section aria-live="assertive" aria-label="{{aria}}" style="width: 100%; box-sizing: border-box; padding: 22px 18px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; font-family: Inter, sans-serif; background: {{bg}}; border: {{border}}">
+  <span style="padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 700; background: {{chipBg}}; color: {{chipFg}}">{{distance}}</span>
+  <span aria-hidden="true" style="width: 150px; height: 150px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: {{circleBg}}; border: 4px solid {{accent}}; animation: {{ringAnim}}">
+    <sc-if value="{{v.straight}}" hint-placeholder-val="{{ true }}"><svg style="animation: sv-nudge-up 1.4s ease-in-out infinite" width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7"></path></svg></sc-if>
+    <sc-if value="{{v.left}}" hint-placeholder-val="{{ false }}"><svg style="animation: sv-nudge-left 1.4s ease-in-out infinite" width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-7a4 4 0 0 0-4-4H4M9 4 4 9l5 5"></path></svg></sc-if>
+    <sc-if value="{{v.right}}" hint-placeholder-val="{{ false }}"><svg style="animation: sv-nudge-right 1.4s ease-in-out infinite" width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20v-7a4 4 0 0 1 4-4h9M15 4l5 5-5 5"></path></svg></sc-if>
+    <sc-if value="{{v.warn}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"></path><path d="M12 10v4M12 17.5v.5"></path></svg></sc-if>
+    <sc-if value="{{v.arrived}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></sc-if>
+  </span>
+  <span style="font-size: 36px; line-height: 1.05; font-weight: 800; letter-spacing: 0.02em; color: {{titleInk}}">{{instruction}}</span>
+  <span style="font-size: 18px; font-weight: 600; color: {{subInk}}">{{detail}}</span>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","default":"straight","options":["straight","left","right","warn","arrived"]},"instruction":{"editor":"text","default":"Đi thẳng"},"detail":{"editor":"text","default":"khoảng 20 bước"},"distance":{"editor":"text","default":"Còn 80 m"},"$preview":{"width":361,"height":340}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var vr = this.props.variant ?? 'straight';
+    var v = {};
+    ['straight','left','right','warn','arrived'].forEach(function (n) { v[n] = n === vr; });
+    var warn = vr === 'warn', ok = vr === 'arrived';
+    var ins = this.props.instruction ?? 'Đi thẳng';
+    var det = this.props.detail ?? 'khoảng 20 bước';
+    return {
+      v: v,
+      ringAnim: warn ? 'sv-alarm 0.9s ease-out infinite' : (ok ? 'sv-glow 1.8s ease-out 3' : 'none'),
+      instruction: ins, detail: det,
+      distance: this.props.distance ?? 'Còn 80 m',
+      aria: ins + ', ' + det,
+      bg: warn ? '#5C1712' : (ok ? '#0B5A43' : '#0A3026'),
+      border: warn ? '2px solid #FF9B8A' : (ok ? '2px solid #8AE0BE' : '2px solid rgba(246, 190, 57, 0.6)'),
+      accent: warn ? '#FFB4A6' : (ok ? '#B8F2D9' : '#F6BE39'),
+      circleBg: warn ? 'rgba(255, 155, 138, 0.12)' : (ok ? 'rgba(184, 242, 217, 0.12)' : 'rgba(246, 190, 57, 0.1)'),
+      chipBg: warn ? '#FFB4A6' : (ok ? '#B8F2D9' : '#F6BE39'),
+      chipFg: '#06281E',
+      titleInk: '#FFFFFF',
+      subInk: warn ? '#FFD9D2' : '#D9F8E8'
+    };
+  }
+}
+</script>
+</body>
+</html>

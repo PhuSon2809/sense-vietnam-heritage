@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>AppHeader</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<header style="position: relative; width: 100%; height: 56px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; gap: 12px; font-family: Inter, sans-serif; color: {{ink}}">
+  <sc-if value="{{backIcon}}" hint-placeholder-val="{{ true }}">
+    <a href="{{backHref}}" aria-label="Quay lại" style="width: 44px; height: 44px; flex: none; border-radius: 50%; background: {{btnBg}}; border: {{btnBorder}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"></path></svg></a>
+  </sc-if>
+  <sc-if value="{{backPill}}" hint-placeholder-val="{{ false }}">
+    <a href="{{backHref}}" style="height: 44px; flex: none; padding: 0 14px 0 10px; border-radius: 999px; background: {{btnBg}}; border: {{btnBorder}}; box-sizing: border-box; display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600; color: {{ink}}; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"></path></svg>{{backLabel}}</a>
+  </sc-if>
+  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+    <sc-if value="{{hasEyebrow}}" hint-placeholder-val="{{ true }}">
+      <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: {{eyebrowInk}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{eyebrow}}</span>
+    </sc-if>
+    <span style="font-family: 'Playfair Display', serif; font-size: {{titleSize}}; line-height: 1.15; font-weight: 700; color: {{titleInk}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{title}}</span>
+  </div>
+  <sc-if value="{{a.share}}" hint-placeholder-val="{{ false }}">
+    <button type="button" aria-label="Chia sẻ" style="width: 44px; height: 44px; flex: none; border-radius: 50%; border: {{btnBorder}}; background: {{btnBg}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"></path><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"></path></svg></button>
+  </sc-if>
+  <sc-if value="{{a.save}}" hint-placeholder-val="{{ false }}">
+    <button type="button" onClick="{{toggleSave}}" aria-pressed="{{savedAttr}}" aria-label="{{saveLabel}}" style="height: 44px; flex: none; padding: 0 14px 0 12px; gap: 6px; border-radius: 999px; border: {{btnBorder}}; background: {{saveBg}}; display: flex; align-items: center; justify-content: center; font-family: inherit; font-size: 13px; font-weight: 700; color: {{saveInk}}; cursor: pointer"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{saveFill}}" stroke="{{saveInk}}" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4V3Z"></path></svg>{{saveText}}</button>
+  </sc-if>
+  <sc-if value="{{a.settings}}" hint-placeholder-val="{{ false }}">
+    <a href="S19a.dc.html" aria-label="Cài đặt trải nghiệm" style="width: 44px; height: 44px; flex: none; border-radius: 50%; border: {{btnBorder}}; background: {{btnBg}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></a>
+  </sc-if>
+  <sc-if value="{{a.lang}}" hint-placeholder-val="{{ false }}">
+    <button type="button" onClick="{{toggleLang}}" aria-label="{{langLabel}}" style="height: 44px; flex: none; padding: 0 14px; border-radius: 999px; background: {{btnBg}}; border: {{btnBorder}}; font-family: inherit; font-size: 13px; color: {{ink}}; cursor: pointer"><sc-if value="{{en}}" hint-placeholder-val="{{ false }}">VI · <b>EN</b></sc-if><sc-if value="{{vi}}" hint-placeholder-val="{{ true }}"><b>VI</b> · EN</sc-if></button>
+  </sc-if>
+  <sc-if value="{{a.close}}" hint-placeholder-val="{{ false }}">
+    <a href="{{closeHref}}" aria-label="Đóng" style="width: 44px; height: 44px; flex: none; border-radius: 50%; border: {{btnBorder}}; background: {{btnBg}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></a>
+  </sc-if>
+  <sc-if value="{{a.a11y}}" hint-placeholder-val="{{ false }}">
+    <a href="{{a11yHref}}" aria-label="Chế độ Trợ năng" style="width: 44px; height: 44px; flex: none; border-radius: 50%; border: {{btnBorder}}; background: {{btnBg}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{ink}}" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="4.5" r="2"></circle><path d="M5 8.5 12 10l7-1.5M12 10v5m0 0-3 6m3-6 3 6"></path></svg></a>
+  </sc-if>
+  <sc-if value="{{toast}}" hint-placeholder-val="{{ false }}">
+    <span role="status" style="position: absolute; right: 16px; top: 54px; z-index: 5; padding: 8px 14px; border-radius: 12px; background: #0A3026; color: #FFFFFF; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 6px 18px rgba(6, 40, 30, 0.28)">{{toast}}</span>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"title":{"editor":"text","default":"Tiêu đề màn hình"},"eyebrow":{"editor":"text","default":"Đại Nội Huế"},"backHref":{"editor":"text","default":"S05.dc.html"},"backLabel":{"editor":"text","default":""},"closeHref":{"editor":"text","default":"S05.dc.html"},"a11yHref":{"editor":"text","default":"S13.dc.html"},"action":{"editor":"enum","default":"none","options":["none","share","save","settings","lang","close","a11y"]},"theme":{"editor":"enum","default":"light","options":["light","dark"]},"size":{"editor":"enum","default":"regular","options":["regular","large"]},"$preview":{"width":393,"height":56}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var st = this.state || {};
+    var act = this.props.action ?? 'none';
+    var back = this.props.backHref ?? 'S05.dc.html';
+    var bl = this.props.backLabel ?? '';
+    var eb = this.props.eyebrow ?? 'Đại Nội Huế';
+    var dark = (this.props.theme ?? 'light') === 'dark';
+    var a = {};
+    ['share','save','settings','lang','close','a11y'].forEach(function (n) { a[n] = act === n; });
+    return {
+      title: this.props.title ?? 'Tiêu đề màn hình',
+      eyebrow: eb,
+      hasEyebrow: eb !== '',
+      backHref: back,
+      backLabel: bl,
+      backIcon: back !== '' && bl === '',
+      backPill: back !== '' && bl !== '',
+      closeHref: this.props.closeHref ?? 'S05.dc.html',
+      a11yHref: this.props.a11yHref ?? 'S13.dc.html',
+      a: a,
+      ink: dark ? '#FFFFFF' : '#0A3026',
+      titleInk: dark ? '#FFFFFF' : '#0A3026',
+      eyebrowInk: dark ? '#F6BE39' : '#7D5100',
+      btnBg: dark ? 'rgba(255, 255, 255, 0.08)' : '#FFFFFF',
+      btnBorder: dark ? '1px solid rgba(255, 255, 255, 0.35)' : '1px solid #A8CEBE',
+      titleSize: (this.props.size ?? 'regular') === 'large' ? '25px' : '21px',
+      saved: !!st.saved, savedAttr: st.saved ? 'true' : 'false',
+      saveLabel: st.saved ? 'Đã lưu vào Sổ tay' : 'Lưu vào Sổ tay',
+      saveText: st.saved ? 'Đã lưu' : 'Lưu',
+      saveFill: st.saved ? (dark ? '#F6BE39' : '#0E7C5B') : 'none',
+      saveInk: st.saved ? (dark ? '#F6BE39' : '#0E7C5B') : (dark ? '#FFFFFF' : '#0A3026'),
+      saveBg: dark ? 'rgba(255, 255, 255, 0.08)' : (st.saved ? '#E1EFEA' : '#FFFFFF'),
+      en: !!st.en, vi: !st.en,
+      langLabel: st.en ? 'Đổi ngôn ngữ, đang chọn English' : 'Đổi ngôn ngữ, đang chọn Tiếng Việt',
+      toast: st.toast || '',
+      toggleSave: function () { var v = !st.saved; self.setState({ saved: v, toast: v ? '✓ Đã lưu vào Sổ tay' : 'Đã bỏ lưu' }); },
+      toggleLang: function () { var v = !st.en; self.setState({ en: v, toast: v ? '✓ Narration & subtitles: English' : '✓ Thuyết minh: Tiếng Việt' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

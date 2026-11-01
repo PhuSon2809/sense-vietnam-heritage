@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>S07b Nhắc quá thời gian dừng</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E7C5B}a:hover{color:#064D38}
+@media (prefers-reduced-motion: no-preference) {
+@keyframes sv-rise { from { opacity: 0; transform: translateY(14px) } }
+@keyframes sv-sheet { from { transform: translateY(100%) } }
+@keyframes sv-popc { from { opacity: 0; transform: translateY(-50%) scale(0.92) } }
+@keyframes sv-pop { from { opacity: 0; transform: scale(0.85) } }
+@keyframes sv-drop { from { opacity: 0; transform: translateY(-18px) } }
+@keyframes sv-fade { from { opacity: 0 } }
+@keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(14, 124, 91, 0.5) } 100% { box-shadow: 0 0 0 18px rgba(14, 124, 91, 0) } }
+@keyframes sv-bobx { 0%, 100% { transform: translate(-50%, 0) } 50% { transform: translate(-50%, -6px) } }
+@keyframes sv-dash { to { stroke-dashoffset: -24 } }
+@keyframes sv-eq { 0%, 100% { transform: scaleY(0.35) } 50% { transform: scaleY(1) } }
+@keyframes sv-shake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-3px) } 40% { transform: translateX(3px) } 60% { transform: translateX(-2px) } 80% { transform: translateX(2px) } }
+@keyframes sv-kb { from { transform: scale(1) } to { transform: scale(1.08) } }
+@keyframes sv-nudge-up { 0%, 100% { transform: translateY(5px) } 50% { transform: translateY(-7px) } }
+@keyframes sv-nudge-left { 0%, 100% { transform: translateX(5px) } 50% { transform: translateX(-7px) } }
+@keyframes sv-nudge-right { 0%, 100% { transform: translateX(-5px) } 50% { transform: translateX(7px) } }
+@keyframes sv-alarm { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 155, 138, 0.65) } 50% { box-shadow: 0 0 0 18px rgba(255, 155, 138, 0) } }
+@keyframes sv-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(184, 242, 217, 0.6) } 50% { box-shadow: 0 0 0 16px rgba(184, 242, 217, 0) } }
+@keyframes sv-scan { from { top: 14% } to { top: 66% } }
+@keyframes sv-fall { 0% { transform: translateY(-30px) rotate(0deg); opacity: 0 } 8% { opacity: 1 } 100% { transform: translateY(560px) rotate(600deg); opacity: 0 } }
+@keyframes sv-twinkle { 0%, 100% { opacity: 0.25; transform: scale(0.7) } 50% { opacity: 1; transform: scale(1.2) } }
+main > * { animation: sv-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both }
+main > *:nth-child(2) { animation-delay: 0.05s } main > *:nth-child(3) { animation-delay: 0.1s }
+main > *:nth-child(4) { animation-delay: 0.15s } main > *:nth-child(5) { animation-delay: 0.2s }
+main > *:nth-child(6) { animation-delay: 0.25s } main > *:nth-child(7) { animation-delay: 0.3s }
+main > *:nth-child(n+8) { animation-delay: 0.35s }
+[role="dialog"] { animation: sv-sheet 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+[role="alertdialog"] { animation: sv-popc 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both }
+.sv-eq > span { transform-origin: bottom; animation: sv-eq 1s ease-in-out infinite }
+.sv-eq > span:nth-child(2n) { animation-duration: 0.8s } .sv-eq > span:nth-child(3n) { animation-delay: 0.25s } .sv-eq > span:nth-child(5n) { animation-duration: 1.3s }
+.sv-shake { animation: sv-shake 0.5s ease-in-out 0.6s 3 }
+.sv-drop { animation: sv-drop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both }
+.sv-scan { animation: sv-scan 2.2s ease-in-out infinite alternate }
+.sv-twinkle { animation: sv-twinkle 1.6s ease-in-out infinite }
+.sv-confetti > span { position: absolute; top: 0; animation: sv-fall 3.4s linear infinite }
+.sv-pop { animation: sv-pop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) 0.3s both }
+}
+a, button { transition: filter 0.15s ease, opacity 0.15s ease }
+a:active, button:active { filter: brightness(0.9) }
+</style>
+</helmet>
+<div style="width: 393px; height: 852px; box-sizing: border-box; background: #F8FBF9; display: flex; flex-direction: column; font-family: Inter, sans-serif; color: #0D281E; overflow: hidden; position: relative">
+<div style="flex: none; display: grid; height: 50px; position: relative; z-index: 3"><dc-import name="StatusBar" tone="light" hint-size="393px,50px"></dc-import></div><div style="flex: none; display: grid; height: 56px; position: relative; z-index: 3"><dc-import name="AppHeader" title="Đang dẫn đường" eyebrow="Lộ trình 3 giờ" back-href="S07.dc.html" back-label="Lộ trình" action="none" theme="light" close-href="S05.dc.html" size="regular" hint-size="393px,56px"></dc-import></div><div style="flex: 1; min-height: 0; position: relative; "><div style="position: absolute; left: 16px; top: 4px"><div style="flex: none; display: grid; height: 304px"><dc-import name="MapView" route="progress" visited="2" show-overlay="no" dest="3" hint-size="361px,304px"></dc-import></div></div><div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(6, 40, 30, 0.5)"></div><section role="dialog" aria-modal="true" style="position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 20px 20px; border-radius: 28px 28px 0 0; background: #FFFFFF; box-shadow: 0 -12px 32px rgba(6, 40, 30, 0.18); display: flex; flex-direction: column; gap: 14px; "><span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 999px; background: #CFE0D9"></span><span class="sv-shake" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #FBF3DF; font-size: 11.5px; font-weight: 700; color: #7D5100; white-space: nowrap; align-self: flex-start"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7D5100" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><rect x="8" y="3" width="8" height="18" rx="2"></rect><path d="M4 8v8M20 8v8"></path></svg>Rung nhẹ 1 nhịp</span><div style="display: flex; gap: 14px; align-items: center"><span aria-hidden="true" style="width: 56px; height: 56px; flex: none; border-radius: 18px; background: #FBF3DF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7D5100" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 22px; line-height: 1.2; font-weight: 700; color: #0A3026; ">Bạn đã ở Điện Thái Hòa 32 phút</h1></div><p style="margin: 0; font-size: 14px; line-height: 1.55; color: #2F5247; ">Dự kiến 20 phút. Đi tiếp để kịp lộ trình 3 giờ? Điểm tiếp theo: Tử Cấm Thành, cách 180 m.</p><div style="display: flex; flex-direction: column; gap: 4px"><span role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="display: block; height: 6px; border-radius: 999px; background: #F5E7C4; overflow: hidden"><span style="display: block; width: 100%; height: 100%; border-radius: 999px; background: #D4A017"></span></span><div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #7D5100"><span>Đã dừng 32 phút</span><span>Gợi ý 20 phút</span></div></div><div style="flex: none; display: grid; height: 56px"><dc-import name="PrimaryButton" label="Đi điểm tiếp theo" href="S07a.dc.html" variant="primary" icon="nav" size="lg" hint-size="100%,56px"></dc-import></div><div style="flex: none; display: grid; height: 56px"><dc-import name="PrimaryButton" label="Ở thêm 10 phút" href="S07a.dc.html" variant="secondary" icon="none" size="lg" hint-size="100%,56px"></dc-import></div></section></div><div style="flex: none; display: grid; height: 82px; position: relative; z-index: 3"><dc-import name="BottomNav" active="map" theme="light" size="regular" hint-size="393px,82px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>SettingRow</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 64px; box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 10px 14px; font-family: Inter, sans-serif; color: #0D281E; background: {{bg}}; border-radius: {{radius}}; border: {{border}}">
+  <span aria-hidden="true" style="width: 40px; height: 40px; flex: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: {{tone.bg}}">
+    <sc-if value="{{i.audio}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></sc-if>
+    <sc-if value="{{i.haptic}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><rect x="8" y="3" width="8" height="18" rx="2"></rect><path d="M4 8v8M20 8v8"></path></svg></sc-if>
+    <sc-if value="{{i.ar}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linejoin="round"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"></path><path d="M4 7.5 12 12l8-4.5M12 12v9"></path></svg></sc-if>
+    <sc-if value="{{i.contrast}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18Z" fill="{{tone.fg}}"></path></svg></sc-if>
+    <sc-if value="{{i.caption}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M7 11h4M13 11h4M7 15h8"></path></svg></sc-if>
+    <sc-if value="{{i.location}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></sc-if>
+    <sc-if value="{{i.bluetooth}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 4V3l5 4L7 17"></path></svg></sc-if>
+    <sc-if value="{{i.bell}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2Z"></path><path d="M10 21h4"></path></svg></sc-if>
+    <sc-if value="{{i.camera}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4V8Z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></sc-if>
+    <sc-if value="{{i.watch}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="3"></rect><path d="M9 6V3h6v3M9 18v3h6v-3M12 10v2l1.5 1.5"></path></svg></sc-if>
+    <sc-if value="{{i.download}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg></sc-if>
+    <sc-if value="{{i.book}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"></path><path d="M4 19a2 2 0 0 1 2-2h13"></path></svg></sc-if>
+    <sc-if value="{{i.globe}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></svg></sc-if>
+    <sc-if value="{{i.a11y}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="4.5" r="2"></circle><path d="M5 8.5 12 10l7-1.5M12 10v5m0 0-3 6m3-6 3 6"></path></svg></sc-if>
+    <sc-if value="{{i.gesture}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a2 2 0 0 1 4 0v6M13 10V8a2 2 0 0 1 4 0v4c0 5-3 9-7 9-3 0-5-2-6-5l-1-3a2 2 0 0 1 3.5-1.5L9 13"></path></svg></sc-if>
+    <sc-if value="{{i.wallet}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"></rect><path d="M3 10h18M16 15h2"></path></svg></sc-if>
+    <sc-if value="{{i.card}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{tone.fg}}" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M3 10h18M7 15h4"></path></svg></sc-if>
+  </span>
+  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+    <span style="font-size: {{titleSize}}; font-weight: 600; color: #0A3026">{{title}}</span>
+    <sc-if value="{{hasSub}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12.5px; line-height: 1.4; color: #456358">{{sub}}</span></sc-if>
+  </span>
+  <sc-if value="{{c.toggle}}" hint-placeholder-val="{{ true }}"><dc-import name="Toggle" on="{{on}}" label="{{title}}" hint-size="52px,44px"></dc-import></sc-if>
+  <sc-if value="{{c.badge}}" hint-placeholder-val="{{ false }}"><span style="flex: none; padding: 4px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; background: {{badgeBg}}; color: {{badgeFg}}">{{badge}}</span></sc-if>
+  <sc-if value="{{c.chevron}}" hint-placeholder-val="{{ false }}"><a href="{{href}}" aria-label="Mở {{title}}" style="width: 44px; height: 44px; margin-right: -8px; flex: none; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#456358" stroke-width="2.4" stroke-linecap="round"><path d="m9 5 7 7-7 7"></path></svg></a></sc-if>
+  <sc-if value="{{c.radio}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="width: 22px; height: 22px; flex: none; border-radius: 50%; box-sizing: border-box; border: {{radioBorder}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{radioDot}}"></span></span></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"icon":{"editor":"enum","default":"audio","options":["audio","haptic","ar","contrast","caption","location","bluetooth","bell","camera","watch","download","book","globe","a11y","gesture","wallet","card"]},"tone":{"editor":"enum","default":"jade","options":["jade","amber","azure","neutral"]},"title":{"editor":"text","default":"Âm thanh 3D"},"sub":{"editor":"text","default":"Âm thanh 3D theo vị trí"},"control":{"editor":"enum","default":"toggle","options":["toggle","badge","chevron","radio","none"]},"on":{"editor":"boolean","default":true},"badge":{"editor":"text","default":"Khuyến nghị"},"badgeTone":{"editor":"enum","default":"jade","options":["jade","amber","azure","neutral"]},"href":{"editor":"text","default":"S19a.dc.html"},"surface":{"editor":"enum","default":"card","options":["card","plain","selected"]},"$preview":{"width":361,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var T = {
+      jade: { bg: '#E1EFEA', fg: '#0B6B4E' },
+      amber: { bg: '#FBF3DF', fg: '#7D5100' },
+      azure: { bg: '#E8F0F8', fg: '#185FA5' },
+      neutral: { bg: '#F1F4F2', fg: '#456358' }
+    };
+    var icon = this.props.icon ?? 'audio';
+    var i = {};
+    ['audio','haptic','ar','contrast','caption','location','bluetooth','bell','camera','watch','download','book','globe','a11y','gesture','wallet','card'].forEach(function (n) { i[n] = n === icon; });
+    var ctl = this.props.control ?? 'toggle';
+    var c = {};
+    ['toggle','badge','chevron','radio'].forEach(function (n) { c[n] = n === ctl; });
+    var bt = T[this.props.badgeTone ?? 'jade'] || T.jade;
+    var sub = this.props.sub ?? 'Âm thanh 3D theo vị trí';
+    var surface = this.props.surface ?? 'card';
+    var on = this.props.on === undefined ? true : (this.props.on === true || this.props.on === 'true' || this.props.on === 'yes');
+    return {
+      i: i, c: c,
+      tone: T[this.props.tone ?? 'jade'] || T.jade,
+      title: this.props.title ?? 'Âm thanh 3D',
+      sub: sub, hasSub: sub !== '',
+      on: on,
+      badge: this.props.badge ?? 'Khuyến nghị',
+      badgeBg: bt.bg, badgeFg: bt.fg,
+      href: this.props.href ?? 'S19a.dc.html',
+      bg: surface === 'plain' ? 'transparent' : (surface === 'selected' ? '#F3FAF6' : '#FFFFFF'),
+      border: surface === 'plain' ? 'none' : (surface === 'selected' ? '1.5px solid #0E7C5B' : '1px solid rgba(168, 206, 190, 0.55)'),
+      radius: surface === 'plain' ? '0' : '16px',
+      radioBorder: on ? '2px solid #0E7C5B' : '2px solid #A8CEBE',
+      radioDot: on ? '#0E7C5B' : 'transparent',
+      titleSize: '15px'
+    };
+  }
+}
+</script>
+</body>
+</html>

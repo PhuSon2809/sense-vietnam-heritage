@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>ListRow</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 10px 10px 10px 10px; border-radius: 18px; font-family: Inter, sans-serif; color: #0D281E; background: {{bg}}; border: {{border}}; box-shadow: 0 2px 8px rgba(10, 48, 38, 0.04); opacity: {{opacity}}">
+<a href="{{href}}" style="flex: 1; min-width: 0; min-height: 44px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit">
+  <span style="position: relative; width: {{thumb}}; height: {{thumb}}; flex: none; border-radius: 14px; overflow: hidden; display: grid">
+    <dc-import name="Photo" subject="{{subject}}" w="100%" h="100%" hide-label="yes" hint-size="56px,56px"></dc-import>
+    <sc-if value="{{hasNum}}" hint-placeholder-val="{{ true }}">
+      <span style="position: absolute; left: 4px; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: {{numBg}}; border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700; color: #FFFFFF">{{num}}</span>
+    </sc-if>
+  </span>
+  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+    <span style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap"><span style="font-family: 'Playfair Display', serif; font-size: {{titleSize}}; line-height: 1.2; font-weight: 700; color: #0A3026">{{title}}</span>
+      <sc-if value="{{hasBadge}}" hint-placeholder-val="{{ false }}"><span style="padding: 2px 7px; border-radius: 999px; font-size: 11.5px; font-weight: 700; background: {{badgeBg}}; color: {{badgeFg}}">{{badge}}</span></sc-if>
+    </span>
+    <span style="font-size: 12.5px; line-height: 1.4; color: #456358">{{meta}}</span>
+  </span>
+  <sc-if value="{{t.chevron}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#456358" stroke-width="2.4" stroke-linecap="round" style="flex: none"><path d="m9 5 7 7-7 7"></path></svg></sc-if>
+  <sc-if value="{{t.check}}" hint-placeholder-val="{{ false }}"><span aria-label="Đã chọn" style="width: 26px; height: 26px; flex: none; border-radius: 50%; background: #0E7C5B; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></sc-if>
+</a>
+  <sc-if value="{{t.add}}" hint-placeholder-val="{{ false }}"><button type="button" aria-label="Thêm {{title}} vào lộ trình" style="flex: none; height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #0E7C5B; background: #FFFFFF; display: flex; align-items: center; gap: 4px; font-family: inherit; font-size: 13px; font-weight: 700; color: #0E7C5B; cursor: pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0E7C5B" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Thêm</button></sc-if>
+  <sc-if value="{{t.remove}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 4px; flex: none"><button type="button" aria-label="Chuyển {{title}} lên trước" style="width: 44px; height: 44px; flex: none; border-radius: 12px; border: 1px solid #A8CEBE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B4D3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"></path></svg></button><button type="button" aria-label="Chuyển {{title}} xuống sau" style="width: 44px; height: 44px; flex: none; border-radius: 12px; border: 1px solid #A8CEBE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B4D3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button><button type="button" aria-label="Bỏ {{title}} khỏi lộ trình" style="width: 44px; height: 44px; flex: none; border-radius: 12px; border: 1px solid #E3B5AE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A63A32" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></span></sc-if>
+  <sc-if value="{{t.download}}" hint-placeholder-val="{{ false }}"><span aria-label="Đã tải" style="width: 32px; height: 32px; flex: none; border-radius: 50%; background: #E1EFEA; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E7C5B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></sc-if>
+  <sc-if value="{{t.time}}" hint-placeholder-val="{{ false }}"><span style="flex: none; padding: 5px 10px; border-radius: 999px; background: #FBF3DF; font-size: 12px; font-weight: 700; color: #7D5100">{{timeText}}</span></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"subject":{"editor":"text","default":"Ngọ Môn"},"title":{"editor":"text","default":"Ngọ Môn"},"meta":{"editor":"text","default":"60 m · lối đi bằng phẳng"},"num":{"editor":"text","default":"1"},"ar":{"editor":"boolean","default":false},"badge":{"editor":"text","default":""},"badgeTone":{"editor":"enum","default":"jade","options":["jade","amber","azure","neutral"]},"trailing":{"editor":"enum","default":"chevron","options":["chevron","check","add","remove","download","time","none"]},"timeText":{"editor":"text","default":"20 phút"},"state":{"editor":"enum","default":"default","options":["default","selected","muted"]},"size":{"editor":"enum","default":"regular","options":["regular","large"]},"href":{"editor":"text","default":"S08.dc.html"},"$preview":{"width":361,"height":76}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var T = { jade: ['#E1EFEA', '#064D38'], amber: ['#FBF3DF', '#7D5100'], azure: ['#E8F0F8', '#185FA5'], neutral: ['#F1F4F2', '#456358'] };
+    var tr = this.props.trailing ?? 'chevron';
+    var t = {};
+    ['chevron','check','add','remove','download','time'].forEach(function (n) { t[n] = n === tr; });
+    var st = this.props.state ?? 'default';
+    var badge = this.props.badge ?? '';
+    var bt = T[this.props.badgeTone ?? 'jade'] || T.jade;
+    var num = this.props.num ?? '1';
+    var ar = this.props.ar === true || this.props.ar === 'true' || this.props.ar === 'yes';
+    var large = (this.props.size ?? 'regular') === 'large';
+    return {
+      t: t,
+      subject: this.props.subject ?? 'Ngọ Môn',
+      title: this.props.title ?? 'Ngọ Môn',
+      meta: this.props.meta ?? '60 m · lối đi bằng phẳng',
+      num: num, hasNum: num !== '',
+      numBg: ar ? '#185FA5' : '#1B4D3E',
+      badge: badge, hasBadge: badge !== '', badgeBg: bt[0], badgeFg: bt[1],
+      timeText: this.props.timeText ?? '20 phút',
+      href: this.props.href ?? 'S08.dc.html',
+      bg: st === 'selected' ? '#F3FAF6' : '#FFFFFF',
+      border: st === 'selected' ? '2px solid #0E7C5B' : '1px solid rgba(168, 206, 190, 0.55)',
+      opacity: 1,
+      thumb: large ? '72px' : '56px',
+      titleSize: large ? '19px' : '16px'
+    };
+  }
+}
+</script>
+</body>
+</html>

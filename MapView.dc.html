@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>MapView – Bản đồ Hoàng Thành</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<section aria-label="Bản đồ Hoàng Thành Huế với 6 phân khu" style="width: 361px; height: {{height}}; position: relative; overflow: hidden; border-radius: 22px; border: 1px solid rgba(168, 206, 190, 0.7); box-sizing: border-box; background: #EEEAE0; font-family: Inter, sans-serif; color: #0D281E">
+  <svg aria-hidden="true" width="361" height="304" viewBox="0 0 361 304" style="position: absolute; left: 0; top: 0; display: block">
+    <defs>
+      <g id="tr"><circle r="5.2" fill="#8FBF7F"></circle><circle r="3.2" cx="-1" cy="-1" fill="#A9D198"></circle></g>
+      <g id="trs"><circle r="3.6" fill="#8FBF7F"></circle><circle r="2.1" cx="-0.7" cy="-0.7" fill="#A9D198"></circle></g>
+      <pattern id="pave" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#E6D9BE"></rect><path d="M0 0H6M0 0V6" stroke="#D8C8A6" stroke-width="0.5"></path></pattern>
+    </defs>
+    <!-- Phố xung quanh -->
+    <rect x="0" y="0" width="38" height="304" fill="#E8E3D7"></rect>
+    <rect x="323" y="0" width="38" height="304" fill="#E8E3D7"></rect>
+    <g fill="#DED6C4" stroke="#D2C8B2" stroke-width="0.6">
+      <rect x="4" y="8" width="14" height="18" rx="1"></rect><rect x="21" y="10" width="13" height="12" rx="1"></rect><rect x="5" y="34" width="12" height="14" rx="1"></rect><rect x="20" y="30" width="14" height="20" rx="1"></rect><rect x="4" y="60" width="13" height="16" rx="1"></rect><rect x="20" y="62" width="14" height="10" rx="1"></rect><rect x="6" y="88" width="11" height="12" rx="1"></rect><rect x="21" y="84" width="13" height="18" rx="1"></rect><rect x="4" y="116" width="14" height="14" rx="1"></rect><rect x="21" y="112" width="12" height="16" rx="1"></rect><rect x="5" y="142" width="12" height="18" rx="1"></rect><rect x="20" y="146" width="14" height="12" rx="1"></rect><rect x="4" y="174" width="14" height="12" rx="1"></rect><rect x="21" y="170" width="13" height="18" rx="1"></rect><rect x="5" y="200" width="12" height="14" rx="1"></rect><rect x="20" y="202" width="14" height="16" rx="1"></rect><rect x="4" y="228" width="14" height="16" rx="1"></rect><rect x="21" y="230" width="12" height="12" rx="1"></rect>
+      <rect x="327" y="6" width="13" height="16" rx="1"></rect><rect x="343" y="10" width="14" height="12" rx="1"></rect><rect x="328" y="32" width="12" height="18" rx="1"></rect><rect x="343" y="30" width="14" height="14" rx="1"></rect><rect x="327" y="60" width="14" height="12" rx="1"></rect><rect x="344" y="56" width="13" height="20" rx="1"></rect><rect x="328" y="86" width="12" height="16" rx="1"></rect><rect x="343" y="88" width="14" height="12" rx="1"></rect><rect x="327" y="114" width="14" height="18" rx="1"></rect><rect x="344" y="116" width="12" height="12" rx="1"></rect><rect x="328" y="144" width="12" height="12" rx="1"></rect><rect x="343" y="140" width="14" height="20" rx="1"></rect><rect x="327" y="172" width="14" height="14" rx="1"></rect><rect x="344" y="170" width="13" height="16" rx="1"></rect><rect x="328" y="200" width="12" height="18" rx="1"></rect><rect x="343" y="202" width="14" height="12" rx="1"></rect><rect x="327" y="228" width="14" height="14" rx="1"></rect><rect x="344" y="230" width="12" height="16" rx="1"></rect>
+    </g>
+    <!-- Đường -->
+    <rect x="38" y="0" width="9" height="304" fill="#FFFFFF" stroke="#DCD5C6" stroke-width="0.8"></rect>
+    <rect x="314" y="0" width="9" height="304" fill="#FFFFFF" stroke="#DCD5C6" stroke-width="0.8"></rect>
+    <rect x="0" y="268" width="361" height="11" fill="#FFFFFF" stroke="#DCD5C6" stroke-width="0.8"></rect>
+    <rect x="0" y="279" width="361" height="25" fill="#DCEBD3"></rect>
+    <!-- Hào Hoàng Thành -->
+    <rect x="50" y="-10" width="261" height="273" fill="#A9D3E6"></rect>
+    <rect x="50" y="-10" width="261" height="273" fill="none" stroke="#8CBFD6" stroke-width="1"></rect>
+    <!-- Lòng Hoàng Thành -->
+    <rect x="61" y="-10" width="239" height="262" fill="#E4EDD8"></rect>
+    <rect x="61" y="-10" width="239" height="262" fill="none" stroke="#B4826A" stroke-width="2.5"></rect>
+    <!-- Cầu qua hào phía nam và sân Ngọ Môn -->
+    <rect x="174" y="250" width="13" height="18" fill="#D9D1BF"></rect>
+    <rect x="160" y="282" width="41" height="22" fill="url(#pave)"></rect>
+    <rect x="171" y="286" width="19" height="16" fill="#B98F6E" stroke="#9C7356" stroke-width="0.8"></rect>
+    <circle cx="180.5" cy="292" r="2.2" fill="#D9363E"></circle>
+    <!-- Lối đi -->
+    <g stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="2.4" fill="none" stroke-linecap="round">
+      <path d="M68 140H140M221 140H294"></path>
+      <path d="M130 140V236M231 140V236"></path>
+      <path d="M68 60H125M236 96H294"></path>
+    </g>
+    <!-- Cung Trường Sanh -->
+    <rect x="70" y="4" width="54" height="50" rx="2" fill="#D6E8C9" stroke="#BCA77F" stroke-width="1"></rect>
+    <path d="M78 34c4-6 14-6 18 0s-4 12-10 11-10-5-8-11Z" fill="#A9D3E6" stroke="#8CBFD6" stroke-width="0.6"></path>
+    <rect x="98" y="12" width="20" height="12" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <rect x="102" y="32" width="14" height="10" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Cung Diên Thọ -->
+    <rect x="70" y="64" width="54" height="56" rx="2" fill="url(#pave)" stroke="#BCA77F" stroke-width="1"></rect>
+    <rect x="80" y="72" width="34" height="14" rx="1" fill="#7E9A6A" stroke="#5F7A4D" stroke-width="0.8"></rect>
+    <rect x="76" y="94" width="14" height="18" rx="1" fill="#7E9A6A" stroke="#5F7A4D" stroke-width="0.8"></rect>
+    <rect x="104" y="94" width="14" height="18" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Hưng Miếu -->
+    <rect x="76" y="128" width="42" height="18" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Thế Tổ Miếu + Cửu Đỉnh -->
+    <rect x="70" y="152" width="56" height="86" rx="2" fill="url(#pave)" stroke="#BCA77F" stroke-width="1"></rect>
+    <rect x="76" y="158" width="44" height="18" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <path d="M76 167H120" stroke="#B9842A" stroke-width="0.8"></path>
+    <g fill="#5E6E66"><circle cx="80" cy="196" r="2"></circle><circle cx="85" cy="196" r="2"></circle><circle cx="90" cy="196" r="2"></circle><circle cx="95" cy="196" r="2"></circle><circle cx="100" cy="196" r="2"></circle><circle cx="105" cy="196" r="2"></circle><circle cx="110" cy="196" r="2"></circle><circle cx="115" cy="196" r="2"></circle><circle cx="120" cy="196" r="2"></circle></g>
+    <rect x="90" y="210" width="16" height="18" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Tử Cấm Thành (phế tích) -->
+    <rect x="138" y="14" width="86" height="114" fill="#EAF1E0" stroke="#B4826A" stroke-width="1.4" stroke-dasharray="4 2"></rect>
+    <g fill="none" stroke="#B9A88A" stroke-width="0.9" stroke-dasharray="2 1.6">
+      <rect x="158" y="88" width="46" height="24"></rect><rect x="146" y="64" width="16" height="18"></rect><rect x="200" y="64" width="16" height="18"></rect><rect x="160" y="62" width="42" height="16"></rect>
+    </g>
+    <rect x="165" y="24" width="32" height="16" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <rect x="203" y="30" width="16" height="24" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <rect x="143" y="26" width="15" height="14" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Đại Cung Môn -->
+    <rect x="167" y="124" width="28" height="9" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Điện Thái Hòa + Sân Đại Triều -->
+    <rect x="146" y="138" width="70" height="60" fill="url(#pave)"></rect>
+    <rect x="150" y="142" width="62" height="22" rx="1.5" fill="#E3A82F" stroke="#B9842A" stroke-width="0.9"></rect>
+    <path d="M150 153H212" stroke="#B9842A" stroke-width="1"></path>
+    <rect x="152" y="164" width="58" height="3" fill="#000000" fill-opacity="0.08"></rect>
+    <rect x="175" y="167" width="12" height="70" fill="#CFC6B4"></rect>
+    <!-- Hồ Thái Dịch -->
+    <rect x="118" y="202" width="54" height="22" rx="2" fill="#A9D3E6" stroke="#8CBFD6" stroke-width="0.8"></rect>
+    <rect x="190" y="202" width="54" height="22" rx="2" fill="#A9D3E6" stroke="#8CBFD6" stroke-width="0.8"></rect>
+    <!-- Ngọ Môn -->
+    <rect x="146" y="234" width="70" height="20" fill="#9C7A62" stroke="#7E5E48" stroke-width="0.8"></rect>
+    <rect x="156" y="236" width="50" height="11" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <rect x="148" y="236" width="9" height="9" fill="#7E9A6A"></rect><rect x="205" y="236" width="9" height="9" fill="#7E9A6A"></rect>
+    <!-- Thái Miếu (phế tích) -->
+    <rect x="236" y="152" width="58" height="84" rx="2" fill="#E9F0DF" stroke="#BCA77F" stroke-width="1"></rect>
+    <g fill="none" stroke="#B9A88A" stroke-width="0.9" stroke-dasharray="2 1.6"><rect x="244" y="160" width="42" height="16"></rect><rect x="250" y="190" width="30" height="20"></rect></g>
+    <!-- Triệu Miếu -->
+    <rect x="244" y="116" width="40" height="16" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Vườn Cơ Hạ -->
+    <rect x="236" y="4" width="58" height="92" rx="2" fill="#D3E7C4" stroke="#BCA77F" stroke-width="1"></rect>
+    <path d="M250 50c6-8 20-6 22 4s-8 14-16 12-10-8-6-16Z" fill="#A9D3E6" stroke="#8CBFD6" stroke-width="0.6"></path>
+    <rect x="276" y="16" width="12" height="10" rx="1" fill="#E3A82F" stroke="#B9842A" stroke-width="0.8"></rect>
+    <!-- Cây xanh -->
+    <g>
+      <use href="#tr" x="244" y="16"></use><use href="#tr" x="258" y="22"></use><use href="#tr" x="248" y="32"></use><use href="#tr" x="284" y="40"></use><use href="#tr" x="282" y="76"></use><use href="#tr" x="246" y="82"></use><use href="#tr" x="262" y="84"></use><use href="#tr" x="288" y="58"></use>
+      <use href="#trs" x="74" y="12"></use><use href="#trs" x="86" y="18"></use><use href="#trs" x="118" y="48"></use><use href="#trs" x="74" y="48"></use>
+      <use href="#trs" x="132" y="150"></use><use href="#trs" x="132" y="166"></use><use href="#trs" x="132" y="182"></use><use href="#trs" x="230" y="150"></use><use href="#trs" x="230" y="166"></use><use href="#trs" x="230" y="182"></use>
+      <use href="#tr" x="122" y="232"></use><use href="#tr" x="240" y="244"></use><use href="#tr" x="128" y="244"></use><use href="#tr" x="252" y="242"></use><use href="#tr" x="270" y="244"></use><use href="#tr" x="286" y="240"></use><use href="#tr" x="76" y="244"></use><use href="#tr" x="92" y="246"></use><use href="#tr" x="108" y="244"></use>
+      <use href="#trs" x="296" y="10"></use><use href="#trs" x="296" y="110"></use><use href="#trs" x="296" y="140"></use><use href="#trs" x="66" y="122"></use><use href="#trs" x="66" y="58"></use>
+      <use href="#tr" x="260" y="224"></use><use href="#tr" x="276" y="222"></use><use href="#tr" x="244" y="140"></use><use href="#tr" x="288" y="138"></use>
+      <use href="#tr" x="20" y="290"></use><use href="#tr" x="40" y="294"></use><use href="#tr" x="60" y="290"></use><use href="#tr" x="80" y="294"></use><use href="#tr" x="100" y="290"></use><use href="#tr" x="120" y="294"></use><use href="#tr" x="140" y="290"></use><use href="#tr" x="220" y="290"></use><use href="#tr" x="240" y="294"></use><use href="#tr" x="260" y="290"></use><use href="#tr" x="280" y="294"></use><use href="#tr" x="300" y="290"></use><use href="#tr" x="320" y="294"></use><use href="#tr" x="340" y="290"></use>
+    </g>
+    <!-- Nhãn bản đồ -->
+    <text x="181" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#3F7EA0" stroke="#E4EDD8" stroke-width="2" paint-order="stroke">Hồ Thái Dịch</text>
+    <text x="55.5" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="#3F7EA0" transform="rotate(-90 55.5 110)">Hào Hoàng Thành</text>
+    <text x="70" y="276" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="0.6" fill="#7A8580">Đường 23/8</text>
+    <text x="246" y="276" font-family="Inter, sans-serif" font-size="11" font-weight="600" letter-spacing="0.6" fill="#7A8580">Đường 23/8</text>
+    <text x="265" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#5E6B64" stroke="#E4EDD8" stroke-width="2" paint-order="stroke">Vườn Cơ Hạ</text>
+    <text x="265" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#5E6B64" stroke="#E9F0DF" stroke-width="2" paint-order="stroke">Thái Miếu</text>
+    <text x="97" y="154" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" fill="#5E6B64">Hưng Miếu</text>
+    <text x="194" y="300" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#5E6B64">Kỳ Đài</text>
+  </svg>
+
+  <!-- Lộ trình -->
+  <sc-if value="{{routeFull}}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="361" height="304" viewBox="0 0 361 304" style="position: absolute; left: 0; top: 0; pointer-events: none">
+      <path d="M181 262V154V86H131V188H112" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M181 262V154V86H131V188H112" fill="none" stroke="#0E7C5B" stroke-width="3.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round" style="animation: sv-dash 1s linear infinite"></path>
+    </svg>
+  </sc-if>
+  <sc-if value="{{routeProgress}}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="361" height="304" viewBox="0 0 361 304" style="position: absolute; left: 0; top: 0; pointer-events: none">
+      <path d="M181 262V154V86H131V188H112" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M181 120V86H131V188H112" fill="none" stroke="#0E7C5B" stroke-width="3.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round" style="animation: sv-dash 1s linear infinite"></path>
+      <path d="M181 262V120" fill="none" stroke="#0E7C5B" stroke-width="5" stroke-linecap="round"></path>
+    </svg>
+  </sc-if>
+  <sc-if value="{{routeShort}}" hint-placeholder-val="{{ false }}">
+    <svg aria-hidden="true" width="361" height="304" viewBox="0 0 361 304" style="position: absolute; left: 0; top: 0; pointer-events: none">
+      <path d="M181 196V170" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"></path>
+      <path d="M181 196V170" fill="none" stroke="#0E7C5B" stroke-width="4.5" stroke-linecap="round"></path>
+    </svg>
+  </sc-if>
+  <!-- Ghim phân khu -->
+  <sc-for list="{{pins}}" as="p" hint-placeholder-count="6">
+    <a href="{{pinHref}}" aria-label="{{p.aria}}" style="position: absolute; left: {{p.left}}; top: {{p.top}}; min-width: 44px; min-height: 44px; display: flex; flex-direction: column; align-items: center; gap: 1px; text-decoration: none; transform: translateX(-50%); animation: {{p.anim}}">
+      <span style="width: 26px; height: 26px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: {{p.shadow}}; background: {{p.bg}}; border: 2px solid {{p.ring}}"><span style="transform: rotate(45deg); font-size: 11.5px; font-weight: 700; color: {{p.fg}}">{{p.n}}</span></span>
+      <span style="margin-top: 3px; padding: 1px 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); font-size: 11.5px; font-weight: 700; color: #0A3026; white-space: nowrap; box-shadow: 0 1px 3px rgba(6, 40, 30, 0.15)">{{p.name}}</span>
+    </a>
+  </sc-for>
+
+  <!-- Vị trí của bạn -->
+  <sc-if value="{{gpsWeak}}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; left: {{youHaloL}}; top: {{youHaloT}}; width: 96px; height: 96px; border-radius: 50%; background: rgba(212, 160, 23, 0.16); border: 1.5px dashed #B07D10; box-sizing: border-box"></div>
+  </sc-if>
+  <div aria-label="{{youLabel}}" role="img" style="position: absolute; left: {{youL}}; top: {{youT}}; width: 28px; height: 28px; border-radius: 50%; background: {{youHalo}}; display: flex; align-items: center; justify-content: center">
+    <span style="width: 13px; height: 13px; border-radius: 50%; background: {{youDot}}; border: 2.5px solid #FFFFFF; box-shadow: 0 1px 4px rgba(6, 40, 30, 0.35); animation: sv-pulse 2s ease-out infinite"></span>
+  </div>
+  <sc-if value="{{offline}}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(238, 234, 224, 0.55)"></div>
+    <span style="position: absolute; left: 10px; top: 10px; display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: #0A3026; font-size: 11.5px; font-weight: 600; color: #FFFFFF"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F6BE39" stroke-width="2.4" stroke-linecap="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M3 3l18 18"></path></svg>Ngoại tuyến</span>
+  </sc-if>
+
+  <!-- La bàn & thước tỉ lệ -->
+  <div aria-hidden="true" style="position: absolute; right: 10px; top: 10px; width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 2px 8px rgba(6, 40, 30, 0.15); display: flex; flex-direction: column; align-items: center; justify-content: center">
+    <svg width="12" height="14" viewBox="0 0 12 14"><path d="M6 0 11 13 6 10 1 13Z" fill="#C2413A"></path></svg>
+    <span style="font-size: 9px; font-weight: 700; line-height: 1; color: #0A3026">B</span>
+  </div>
+  <!-- Chú giải -->
+  <button type="button" aria-expanded="{{legendExpanded}}" onClick="{{toggleLegend}}" style="position: absolute; right: 6px; top: 46px; height: 44px; padding: 0 4px; border: none; background: transparent; display: flex; align-items: center; cursor: pointer; font-family: inherit"><span style="height: 28px; padding: 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 2px 8px rgba(6, 40, 30, 0.15); display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #0A3026"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A3026" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg>Chú giải</span></button>
+  <sc-if value="{{legendOpen}}" hint-placeholder-val="{{ false }}">
+    <div role="note" aria-label="Chú giải bản đồ" style="position: absolute; right: 10px; top: 92px; width: 176px; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.97); box-shadow: 0 6px 18px rgba(6, 40, 30, 0.18); display: flex; flex-direction: column; gap: 7px; font-size: 12px; color: #0A3026; z-index: 2">
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; border-radius: 50%; background: #1B4D3E; border: 2px solid #FFFFFF; box-shadow: 0 0 0 1px #1B4D3E"></span>Phân khu đã đến</span>
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; border-radius: 50%; background: #FFFFFF; border: 2px solid #1B4D3E; box-sizing: border-box"></span>Chưa đến</span>
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; border-radius: 50%; background: #185FA5; border: 2px solid #FFFFFF; box-shadow: 0 0 0 1px #185FA5"></span>Có AR phục dựng</span>
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; border-radius: 50%; background: #0E7C5B; border: 2.5px solid #FFFFFF; box-shadow: 0 0 0 1px #0E7C5B"></span>Bạn đang ở đây</span>
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 0; border-top: 4px solid #0E7C5B"></span>Đoạn đã đi</span>
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 0; border-top: 3px dashed #0E7C5B"></span>Lộ trình sắp đi</span>
+      <span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 10px; border: 1.5px dashed #B4826A; box-sizing: border-box"></span>Nền phế tích</span>
+    </div>
+  </sc-if>
+  <sc-if value="{{showOverlay}}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; left: 10px; bottom: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(248, 251, 249, 0.95); box-shadow: 0 4px 12px rgba(6, 40, 30, 0.12); display: flex; flex-direction: column; gap: 5px; width: 124px; box-sizing: border-box">
+      <span style="display: flex; justify-content: space-between; font-size: 11.5px"><span style="font-weight: 700; color: #0A3026">Tiến độ</span><span style="color: #456358">{{visited}} / 6</span></span>
+      <span style="height: 5px; border-radius: 999px; background: #E1EFEA; overflow: hidden"><span style="display: block; width: {{progressW}}; height: 100%; background: #0E7C5B"></span></span>
+    </div>
+    <div aria-hidden="true" style="position: absolute; left: 146px; bottom: 14px; display: flex; flex-direction: column; align-items: flex-start; gap: 2px">
+      <span style="font-size: 11.5px; font-weight: 600; color: #3E4B45">100 m</span>
+      <span style="width: 40px; height: 4px; border: 1.5px solid #3E4B45; border-top: none; box-sizing: border-box"></span>
+    </div>
+    <button type="button" aria-label="Về vị trí của tôi" style="position: absolute; right: 10px; bottom: 10px; width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFFFFF; box-shadow: 0 4px 12px rgba(6, 40, 30, 0.16); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0E7C5B" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="12" r="8"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path></svg></button>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"visited":{"editor":"int","default":2,"min":0,"max":6},"route":{"editor":"enum","default":"none","options":["none","full","progress","short"]},"gps":{"editor":"enum","default":"ok","options":["ok","weak","offline"]},"you":{"editor":"enum","default":"dai-trieu","options":["dai-trieu","ngo-mon","tu-cam-thanh-gate","none"]},"dest":{"editor":"int","default":0,"min":0,"max":6},"pinHref":{"editor":"text","default":"S05a.dc.html"},"legend":{"editor":"boolean","default":false},"showOverlay":{"editor":"boolean","default":true},"height":{"editor":"int","default":304,"min":220,"max":304},"$preview":{"width":361,"height":304}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var visited = this.props.visited ?? 2;
+    var Z = [
+      { n: 1, name: 'Ngọ Môn', x: 181, y: 214 },
+      { n: 2, name: 'Điện Thái Hòa', x: 181, y: 112 },
+      { n: 3, name: 'Tử Cấm Thành', x: 181, y: 42, ar: true },
+      { n: 4, name: 'Thế Tổ Miếu', x: 98, y: 168 },
+      { n: 5, name: 'Cung Diên Thọ', x: 97, y: 76 },
+      { n: 6, name: 'Cung Trường Sanh', x: 97, y: 10 }
+    ];
+    var dest = Number(this.props.dest ?? 0);
+    var pins = Z.map(function (z) {
+      var done = z.n <= visited;
+      var bg = z.ar ? '#185FA5' : (done ? '#1B4D3E' : '#FFFFFF');
+      var isDest = z.n === dest;
+      return {
+        anim: isDest ? 'sv-bobx 1.4s ease-in-out infinite' : 'none',
+        shadow: isDest ? '0 0 0 4px rgba(246, 190, 57, 0.55), 0 3px 8px rgba(6, 40, 30, 0.28)' : '0 3px 8px rgba(6, 40, 30, 0.28)',
+        n: String(z.n),
+        name: z.name,
+        left: z.x + 'px',
+        top: z.y + 'px',
+        bg: bg,
+        ring: z.ar ? '#FFFFFF' : (done ? '#FFFFFF' : '#1B4D3E'),
+        fg: (z.ar || done) ? '#FFFFFF' : '#1B4D3E',
+        aria: z.n + '. ' + z.name + (z.ar ? ', có AR' : '') + (done ? ', đã đến' : '')
+      };
+    });
+    var so = this.props.showOverlay;
+    var route = this.props.route ?? 'none';
+    var gps = this.props.gps ?? 'ok';
+    var Y = { 'dai-trieu': [167, 182], 'ngo-mon': [167, 258], 'tu-cam-thanh-gate': [167, 108], 'none': [-100, -100] };
+    var you = Y[this.props.you ?? 'dai-trieu'] || Y['dai-trieu'];
+    var weak = gps === 'weak';
+    var self = this;
+    var lg0 = this.props.legend === true || this.props.legend === 'true' || this.props.legend === 'yes';
+    var lgOpen = (this.state && this.state.legend !== undefined) ? this.state.legend : lg0;
+    return {
+      legendOpen: lgOpen,
+      legendExpanded: lgOpen ? 'true' : 'false',
+      toggleLegend: function () { self.setState({ legend: !lgOpen }); },
+      pinHref: this.props.pinHref ?? 'S05a.dc.html',
+      routeFull: route === 'full',
+      routeProgress: route === 'progress',
+      routeShort: route === 'short',
+      gpsWeak: weak,
+      offline: gps === 'offline',
+      youL: you[0] + 'px', youT: you[1] + 'px',
+      youHaloL: (you[0] - 34) + 'px', youHaloT: (you[1] - 34) + 'px',
+      youHalo: weak ? 'rgba(212, 160, 23, 0.25)' : 'rgba(14, 124, 91, 0.18)',
+      youDot: weak ? '#B07D10' : (gps === 'offline' ? '#7A8580' : '#0E7C5B'),
+      youLabel: weak ? 'Vị trí ước tính, sai số khoảng 40 mét' : 'Vị trí của bạn',
+      pins: pins,
+      visited: visited,
+      progressW: Math.round(visited / 6 * 100) + '%',
+      showOverlay: so === undefined ? true : (so === true || so === 'true' || so === 'yes'),
+      height: (this.props.height ?? 304) + 'px'
+    };
+  }
+}
+</script>
+</body>
+</html>

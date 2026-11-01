@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Segmented</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div role="radiogroup" aria-label="{{label}}" style="width: 100%; box-sizing: border-box; display: grid; grid-template-columns: repeat({{count}}, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 14px; background: {{bg}}; font-family: Inter, sans-serif">
+  <sc-for list="{{items}}" as="it" hint-placeholder-count="3">
+    <button type="button" role="radio" aria-checked="{{it.checked}}" onClick="{{it.pick}}" style="height: {{h}}; border-radius: 10px; border: none; font-family: inherit; font-size: {{fs}}; font-weight: 600; cursor: pointer; background: {{it.bg}}; color: {{it.fg}}; box-shadow: {{it.shadow}}">{{it.text}}</button>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"options":{"editor":"text","default":"Nhẹ,Vừa,Mạnh"},"selected":{"editor":"int","default":1,"min":0,"max":5},"label":{"editor":"text","default":"Cường độ rung"},"accent":{"editor":"enum","default":"jade","options":["jade","amber","azure","dark"]},"size":{"editor":"enum","default":"regular","options":["regular","large"]},"$preview":{"width":361,"height":48}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var opts = String(this.props.options ?? 'Nhẹ,Vừa,Mạnh').split(',');
+    var sel = (this.state && this.state.sel !== undefined) ? this.state.sel : Number(this.props.selected ?? 1);
+    var acc = this.props.accent ?? 'jade';
+    var A = {
+      jade: { bg: '#EEF5F1', on: '#0E7C5B', onFg: '#FFFFFF', off: '#2F5247' },
+      amber: { bg: '#FBF3DF', on: '#7D5100', onFg: '#FFFFFF', off: '#5C430F' },
+      azure: { bg: '#E8F0F8', on: '#185FA5', onFg: '#FFFFFF', off: '#1F4A73' },
+      dark: { bg: 'rgba(255, 255, 255, 0.08)', on: '#F6BE39', onFg: '#06281E', off: '#D9EFE6' }
+    };
+    var a = A[acc] || A.jade;
+    var large = (this.props.size ?? 'regular') === 'large';
+    return {
+      label: this.props.label ?? 'Cường độ rung',
+      count: opts.length,
+      bg: a.bg,
+      h: large ? '52px' : '44px',
+      fs: large ? '16px' : '14px',
+      items: opts.map(function (t, i) {
+        var on = i === sel;
+        return {
+          text: t.trim(),
+          checked: on ? 'true' : 'false',
+          bg: on ? a.on : 'transparent',
+          fg: on ? a.onFg : a.off,
+          shadow: on ? '0 2px 6px rgba(6, 40, 30, 0.16)' : 'none',
+          pick: function () { self.setState({ sel: i }); }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

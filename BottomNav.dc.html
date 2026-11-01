@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>BottomNav</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<nav aria-label="Điều hướng chính" style="width: 100%; height: {{h}}; padding: 8px 8px {{pb}}; box-sizing: border-box; background: {{bg}}; border-top: {{border}}; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); font-family: Inter, sans-serif">
+  <a href="S05.dc.html" aria-current="{{map.current}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: {{fs}}; font-weight: {{map.weight}}; color: {{map.color}}; text-decoration: none"><span style="width: {{pw}}; height: {{ph}}; border-radius: 999px; background: {{map.pill}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="{{is}}" height="{{is}}" viewBox="0 0 24 24" fill="none" stroke="{{map.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5L9 4Z"></path><path d="M9 4v13.5M15 6.5V20"></path></svg></span>Bản đồ</a>
+  <a href="S22.dc.html" aria-current="{{explore.current}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: {{fs}}; font-weight: {{explore.weight}}; color: {{explore.color}}; text-decoration: none"><span style="width: {{pw}}; height: {{ph}}; border-radius: 999px; background: {{explore.pill}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="{{is}}" height="{{is}}" viewBox="0 0 24 24" fill="none" stroke="{{explore.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"></path></svg></span>Khám phá</a>
+  <a href="S23.dc.html" aria-current="{{audio.current}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: {{fs}}; font-weight: {{audio.weight}}; color: {{audio.color}}; text-decoration: none"><span style="width: {{pw}}; height: {{ph}}; border-radius: 999px; background: {{audio.pill}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="{{is}}" height="{{is}}" viewBox="0 0 24 24" fill="none" stroke="{{audio.color}}" stroke-width="2" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="3" y="14" width="4" height="6" rx="1.5"></rect><rect x="17" y="14" width="4" height="6" rx="1.5"></rect></svg></span>Âm thanh</a>
+  <a href="S19.dc.html" aria-current="{{profile.current}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: {{fs}}; font-weight: {{profile.weight}}; color: {{profile.color}}; text-decoration: none"><span style="width: {{pw}}; height: {{ph}}; border-radius: 999px; background: {{profile.pill}}; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="{{is}}" height="{{is}}" viewBox="0 0 24 24" fill="none" stroke="{{profile.color}}" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"></path></svg></span>Cá nhân</a>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","default":"map","options":["map","explore","audio","profile","none"]},"theme":{"editor":"enum","default":"light","options":["light","dark"]},"size":{"editor":"enum","default":"regular","options":["regular","large"]},"$preview":{"width":393,"height":82}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var a = this.props.active ?? 'map';
+    var dark = (this.props.theme ?? 'light') === 'dark';
+    var large = (this.props.size ?? 'regular') === 'large';
+    function tab(id) {
+      var on = id === a;
+      return {
+        current: on ? 'page' : 'false',
+        weight: on ? 700 : 500,
+        color: on ? (dark ? '#F6BE39' : '#0E7C5B') : (dark ? '#BFD9CF' : '#4F6B61'),
+        pill: on ? (dark ? 'rgba(246, 190, 57, 0.16)' : '#E1EFEA') : 'transparent'
+      };
+    }
+    return {
+      map: tab('map'), explore: tab('explore'), audio: tab('audio'), profile: tab('profile'),
+      bg: dark ? '#06281E' : 'rgba(248, 251, 249, 0.97)',
+      border: dark ? '1px solid rgba(246, 190, 57, 0.25)' : '1px solid rgba(168, 206, 190, 0.55)',
+      h: large ? '96px' : '82px',
+      pb: large ? '24px' : '22px',
+      fs: large ? '13px' : '12px',
+      pw: large ? '64px' : '56px',
+      ph: large ? '36px' : '30px',
+      is: large ? 25 : 21
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>StatusBar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div aria-hidden="true" style="width: 100%; height: 50px; box-sizing: border-box; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; font-family: Inter, sans-serif; color: {{ink}}; background: {{bg}}">
+  <span style="font-size: 16px; font-weight: 600">9:41</span>
+  <span style="display: flex; align-items: center; gap: 6px">
+    <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="{{ink}}"></rect><rect x="5" y="5" width="3" height="7" rx="1" fill="{{ink}}"></rect><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="{{ink}}"></rect><rect x="15" y="0" width="3" height="12" rx="1" fill="{{ink}}"></rect></svg>
+    <span style="font-size: 12px; font-weight: 700">5G</span>
+    <svg width="26" height="12" viewBox="0 0 26 12"><rect x="0.75" y="0.75" width="21.5" height="10.5" rx="3" fill="none" stroke="{{ink}}" stroke-opacity="0.4" stroke-width="1.5"></rect><rect x="2.5" y="2.5" width="16" height="7" rx="1.5" fill="{{ink}}"></rect><rect x="23.5" y="4" width="2" height="4" rx="1" fill="{{ink}}" fill-opacity="0.4"></rect></svg>
+  </span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tone":{"editor":"enum","default":"light","options":["light","dark","transparent-dark"]},"$preview":{"width":393,"height":50}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var t = this.props.tone ?? 'light';
+    return {
+      ink: t === 'light' ? '#0D281E' : '#FFFFFF',
+      bg: t === 'dark' ? '#0A3026' : (t === 'transparent-dark' ? 'linear-gradient(rgba(6, 40, 30, 0.78), rgba(6, 40, 30, 0.35) 70%, rgba(6, 40, 30, 0))' : 'transparent')
+    };
+  }
+}
+</script>
+</body>
+</html>
